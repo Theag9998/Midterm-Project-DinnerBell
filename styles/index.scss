@@ -8,5 +8,32 @@ body {
   }
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  background-color: #c3e2ce;
+  justify-content: space-between;
+}
 
+nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 
+.user-cart {
+  display: flex;
+  flex-direction: row;
+  background-color: #246160;
+  color: white;
+}
+
+.page-links {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.logo {
+  font-family: Unica one;
+  font-size: xxx-large;
+}
