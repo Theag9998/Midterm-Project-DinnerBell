@@ -6,8 +6,8 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM foods`)
       .then(data => {
-        console.log(data.rows)
-        //const foods = data.rows;
+        //console.log(data.rows)
+        const foods = data.rows;
         res.json({ foods });
       })
       .catch(err => {
