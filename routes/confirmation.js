@@ -8,9 +8,9 @@ module.exports = (db) => {
   })
 
   router.get("/", (req, res, next) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT pick_up_date_time FROM orders;`)
       .then(data => {
-        const users = data.rows;
+        const orders = data.rows;
         res.json({ users });
       })
       .catch(err => {
