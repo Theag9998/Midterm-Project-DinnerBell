@@ -4,10 +4,11 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT * FROM foods`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        //console.log(data.rows)
+        const foods = data.rows;
+        res.json({ foods });
       })
       .catch(err => {
         res
