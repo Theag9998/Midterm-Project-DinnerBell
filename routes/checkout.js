@@ -26,12 +26,20 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     res.render("pages/checkout")
   });
+
+
+
+
   return router;
 };
 
 
 
-// ORIGINAL EXAMPLE BELOW
+
+
+
+
+
 // router.get("/", (req, res) => {
 //   db.query(`SELECT * FROM users;`)
 //     .then(data => {
@@ -43,5 +51,4 @@ module.exports = (db) => {
 //         .status(500)
 //         .json({ error: err.message });
 //     });
-// });
-// return router;
+//   });
