@@ -4,6 +4,10 @@ const router  = express.Router();
 module.exports = () => {
   router.get("/", (req, res, next) => {
     res.render('pages/confirmation');
+
+
+
+
   })
 
   return router;
