@@ -1,7 +1,5 @@
 const express = require('express');
 const router  = express.Router();
-const accountSid = 'AC374bb6cd27fbae9a937c7526526c433e';
-const authToken = '965169039fd80dbc5f4ef68bbaab44d5';
 
 //const client = require ('twilio') (accountSid, authToken);
 
@@ -39,26 +37,12 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    return db.query (`
-      INSERT INTO orders (customer_id, order_date_time)
-      VALUES ($1, NOW())
-      RETURNING id;
-    `, [1]) // req.session.user_id
-      .then(res => {
-        const orderId = res.rows[0];
-        let queryString = `INSERT INTO order_foods(food_id, quantity) VALUES `;
-        let values = [];
-        let counter = 1;
-        for (const food of cart.foods) {
-          queryString += `($${counter}, $${counter + 1}, $${counter + 2}), `;
-          values = values.concat([ cart.foods.food_id, orderId, cart.foods.quantity]);
-          counter += 3;
-        }
-        queryString += "RETURNING *;"
-        db.query(queryString, values)
-          .then(() => {
-            res.redirect("/confirmation");
-          });
+    const customerId = req.sessions.user_id;
+    const orderItems = req.body;
+    return db.orders.add(customerId, orderItems)
+      .then(() => {
+        // TODO: Change redirect to render and pass values?
+        res.redirect("/confirmation");
       })
       .catch(err => {
         res
@@ -68,27 +52,18 @@ module.exports = (db) => {
   });
 
   router.put("/:id", (req, res) => {
-    // UPDATE database
-    // redirect to confirmation page.
-      return db.query (`
-        UPDATE orders
-        SET order_date_time = NOW()
-        WHERE orders.id = $1
-        RETURNING id;
-      `, [req.params.id])
-        .then(data => {
-          const queries = [];
-          let values = [];
-          let counter = 1;
-          for (const food of cart.foods ) {
-            queries.push(`UPDATE order_foods SET food_id = $${counter}, order_id = $${counter + 1}, quantity = $${counter + 2} WHERE order_foods.id = $${counter + 3};`);
-            values = values.concat([ cart.foods.food_id, data.id, cart.foods.quantity, cart.foods.id]);
-            counter += 4;
-          }
-          const queryString = queries.join('\n');
-          return db.query(queryString, values)
-            .then(data => res.redirect('/confirmation'));
-        });
+    const orderId = req.params.id;
+    const orderItems = req.body;
+    return db.orders.update(orderId, orderItems)
+      .then(data => {
+        // TODO: Change redirect to render and pass values?
+        res.redirect('/confirmation');
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
   return router;
 };
