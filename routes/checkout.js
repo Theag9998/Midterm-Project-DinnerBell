@@ -1,7 +1,5 @@
 const express = require('express');
 const router  = express.Router();
-const accountSid = 'AC374bb6cd27fbae9a937c7526526c433e';
-const authToken = '965169039fd80dbc5f4ef68bbaab44d5';
 
 //const client = require ('twilio') (accountSid, authToken);
 
@@ -20,6 +18,7 @@ module.exports = (db) => {
     res.render("pages/checkout")
   });
 
+<<<<<<< HEAD
   // router.post("/", (req, res) => {
   //   // SMS to Customer
   //   client.messages.create({
@@ -60,6 +59,52 @@ module.exports = (db) => {
           return db.query(queryString, values)
             .then(data => res.redirect('/confirmation'));
         });
+=======
+  router.post("/", (req, res) => {
+    const customerId = 1;
+    const orderId = null;
+    const foodId = req.body.foodId;
+    if (!orderId) {
+      return db.orders.add(customerId, foodId)
+        .then((data) => {
+          console.log(data);
+          // TODO: Change redirect to render and pass values?
+          res.redirect("/confirmation");
+        })
+        /* .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        }); */
+      } else {
+        return db.orders.update(orderId, foodId)
+        .then((data) => {
+          console.log(data);
+          // TODO: Change redirect to render and pass values?
+          res.redirect("/confirmation");
+        })
+        /* .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        }); */
+      }
+  });
+
+  router.put("/:id", (req, res) => {
+    const orderId = req.params.id;
+    const orderItems = req.body;
+    return db.orders.update(orderId, orderItems)
+      .then(data => {
+        // TODO: Change redirect to render and pass values?
+        res.redirect('/confirmation');
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+>>>>>>> a399121c6bdd5e03c4d9b5090914c977df59c3ce
   });
   return router;
 };
