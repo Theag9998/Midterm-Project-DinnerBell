@@ -15,7 +15,7 @@ const morgan     = require('morgan');
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
-db.connect();
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -46,7 +46,7 @@ const checkoutRoutes = require ("./routes/checkout");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/homePage", homePageRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use("/confirmation", confirmationRoutes());
+app.use("/confirmation", confirmationRoutes(db));
 app.use("/menu", menuRoutes(db));
 app.use("/my-orders", myOrdersRoutes());
 app.use("/checkout", checkoutRoutes());
