@@ -5,7 +5,9 @@ const authToken = '965169039fd80dbc5f4ef68bbaab44d5';
 
 //const client = require ('twilio') (accountSid, authToken);
 
+
 //SMS to Customer
+
 // client.messages.create({
 //   to: +7783192221,
 //   from: '+15153163985',
