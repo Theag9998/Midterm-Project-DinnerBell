@@ -34,7 +34,7 @@ class OrderFoodsTable {
    * @param {Object} order
    * @param {Number} foodId
    */
-  increment(orderId, foodId) {
+  increment(order, foodId) {
     const queryString = `
       INSERT INTO ${this.tableName} (food_id, order_id)
       VALUES ($1, $2)

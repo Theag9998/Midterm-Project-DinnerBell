@@ -20,8 +20,8 @@ module.exports = (db) => {
     }
 
     promise.then((data) => {
-      console.log(data[0]);
-      req.session.order_id = data[0].order_id;
+      console.log(data);
+      req.session.order_id = data.id;
     })
     /* .catch(err => {
       res
