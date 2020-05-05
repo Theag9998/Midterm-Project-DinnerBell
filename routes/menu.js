@@ -3,11 +3,16 @@ const router  = express.Router();
 
 
 module.exports = (db) => {
+
+  router.get("/", (req, res) => {
+    res.render("pages/menu")
+  })
+
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM foods`)
       .then(data => {
-        //console.log(data.rows)
         const foods = data.rows;
+
         res.json({ foods });
       })
       .catch(err => {
@@ -15,6 +20,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
+
   });
   return router;
 };
