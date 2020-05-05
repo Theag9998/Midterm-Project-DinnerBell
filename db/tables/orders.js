@@ -25,7 +25,7 @@ class OrdersTable {
     return this.db
       .query(queryString, values)
       .then(res => {
-        const orderId = res.rows[0];
+        const orderId = res[0].id;
         return this.db.orderFoods.increment(orderId, foodId);
       });  // If using catch(), add in route
   }
@@ -60,7 +60,7 @@ class OrdersTable {
     return this.db
       .query(queryString, values)
       .then(res => {
-        const orderId = res.rows[0];
+        const orderId = res[0].id;
         return this.db.orderFoods.increment(orderId, foodId);
       });  // If using catch(), add in route
   }
