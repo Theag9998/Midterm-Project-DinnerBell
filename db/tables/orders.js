@@ -13,8 +13,9 @@ class OrdersTable {
   /**
    * Add an order record.
    * @param {Number} customerId - Unique id from a user's cookie session.
+   * @param {Array} orderItems -
    */
-  add(customerId) {
+  add(customerId, orderItems) {
     const queryString = `
       INSERT INTO orders (customer_id, order_date_time)
       VALUES ($1, NOW())
@@ -22,7 +23,11 @@ class OrdersTable {
     `;
     values = [ customerId ];
     return this.db
-      .query(queryString, values);
+      .query(queryString, values)
+      .then(res => {
+        const orderId = res.rows[0];
+        return this.db.orderFoods.add(orderId, orderItems);
+      });  // If using catch(), add in route
   }
 
   /**
@@ -41,18 +46,23 @@ class OrdersTable {
 
   /**
    * Update an order.
-   * @param {Object} order
+   * @param {Number} orderId
+   * @param {Array} orderItems
    */
-  update(order) {
+  update(orderId, orderItems) {
     const queryString = `
       UPDATE orders
       SET order_date_time = NOW()
       WHERE orders.id = $1
       RETURNING id;
     `;
-    values = [ order.id ];
+    values = [ orderId ];
     return this.db
-      .query(queryString, values);
+      .query(queryString, values)
+      .then(res => {
+        const orderId = res.rows[0];
+        return this.db.orderFoods.update(orderId, orderItems);
+      });  // If using catch(), add in route
   }
 
 }
