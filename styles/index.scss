@@ -21,7 +21,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 120px;
+  height: 150px;
 }
 
 .logo {
@@ -30,44 +30,69 @@ nav {
   justify-content: center;
   background-color: #f19b79;
   color: white;
-  padding: 15px;
-  height: 120px;
+  padding: 0px 15px 10px 15px;
+  height: 150px;
 
 }
 
 .app-name {
   font-family: Unica one;
-  font-size: xxx-large;
+  font-size: 90px;
+  height: 90px;
 }
 
 .app-slogan {
   font-family: quicksand;
+  width: fit-content;
+  font-size: xx-large;
+  align-self: center;
 }
 
 .page-links {
   display: flex;
   justify-content: space-evenly;
-  width: 500px;
+  width: 1000px;
 }
 
 .nav-links {
   align-content: center;
   text-decoration: none;
   font-family: quicksand;
-  padding: 20px;
+  padding: 20px 70px;
   font-size: xxx-large;
   color: #246160;
+}
+
+.nav-links:hover {
+  color: white;
 }
 
 .user-cart {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // background-color: #246160;
-  color: white;
+  padding: 20px;
+  color: #246160;
 }
+
+
 
 .fas {
   width: fit-content;
+  align-self: center;
+  font-size: xxx-large;
+  color: #246160;
 }
 
+.fas:hover {
+  color: white;
+}
+
+.nav-user {
+  margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: quicksand;
+    font-size: x-large;
+    padding-top: 15px;
+    color: #246160;
+}
