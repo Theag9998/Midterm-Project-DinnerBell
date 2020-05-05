@@ -18,22 +18,56 @@ header {
 nav {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  height: 120px;
 }
 
-.user-cart {
+.logo {
   display: flex;
-  flex-direction: row;
-  background-color: #246160;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f19b79;
   color: white;
+  padding: 15px;
+  height: 120px;
+
+}
+
+.app-name {
+  font-family: Unica one;
+  font-size: xxx-large;
+}
+
+.app-slogan {
+  font-family: quicksand;
 }
 
 .page-links {
   display: flex;
   justify-content: space-evenly;
+  width: 500px;
 }
 
-.logo {
-  font-family: Unica one;
+.nav-links {
+  align-content: center;
+  text-decoration: none;
+  font-family: quicksand;
+  padding: 20px;
   font-size: xxx-large;
+  color: #246160;
 }
+
+.user-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // background-color: #246160;
+  color: white;
+}
+
+.fas {
+  width: fit-content;
+}
+
