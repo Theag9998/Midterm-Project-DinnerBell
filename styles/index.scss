@@ -1,7 +1,7 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: white;
+  background-color: #c3e2ce;
 
   h1 {
     color: #244751;
@@ -36,4 +36,14 @@ nav {
 .logo {
   font-family: Unica one;
   font-size: xxx-large;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-image: url(https://images.pexels.com/photos/1053769/pexels-photo-1053769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  height: 100%;
 }
