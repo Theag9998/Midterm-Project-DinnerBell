@@ -17,7 +17,7 @@ class OrdersTable {
    */
   add(customerId, orderItems) {
     const queryString = `
-      INSERT INTO orders (customer_id, order_date_time)
+      INSERT INTO ${this.tableName} (customer_id, order_date_time)
       VALUES ($1, NOW())
       RETURNING id;
     `;
@@ -37,7 +37,7 @@ class OrdersTable {
   get(id) {
     const queryString = `
       SELECT *
-      FROM orders
+      FROM ${this.tableName}
       WHERE id = $1;
     `;
     return this.db
@@ -51,7 +51,7 @@ class OrdersTable {
    */
   update(orderId, orderItems) {
     const queryString = `
-      UPDATE orders
+      UPDATE ${this.tableName}
       SET order_date_time = NOW()
       WHERE orders.id = $1
       RETURNING id;

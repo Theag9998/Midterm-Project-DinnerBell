@@ -35,7 +35,7 @@ class OrderFoodsTable {
   getByOrder(id) {
     const queryString = `
       SELECT *
-      FROM order_foods
+      FROM ${this.tableName}
       WHERE order_id = $1;
     `;
     return this.db
