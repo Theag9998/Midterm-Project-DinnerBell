@@ -3,7 +3,10 @@
 const { Pool } = require("pg");
 
 // Import database table objects
-// const ...
+const UsersTable = require('./tables/users');
+const OrdersTable = require('./tables/orders');
+const FoodsTable = require('./tables/foods');
+const OrderFoodsTable = require('./tables/orderFoods');
 
 /**
  * Manages all interactions with the database.
@@ -14,7 +17,10 @@ class DatabaseConnection {
     this.pool = new Pool(this._parameters());
 
     // Connected database tables
-    // this...
+    this.users = new UsersTable(this);
+    this.orders = new OrdersTable(this);
+    this.foods = new FoodsTable(this);
+    this.orderFoods = new OrderFoodsTable(this);
   }
 
   /**
