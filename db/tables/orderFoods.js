@@ -11,12 +11,30 @@ class OrderFoodsTable {
   }
 
   /**
+   * Retrieves all foods by order.
+   * @param {Object} order
+   */
+  getByOrder(order) {
+    const queryString = `
+      SELECT *
+      FROM ${this.tableName}
+      WHERE ${this.tableName}.order_id = $1;
+    `;
+    const values = [ order.id ];
+    return this.db
+      .query(queryString, values)
+      .then(items => {
+        order.items = items;
+        return order;
+      });
+  }
+
+  /**
    * Increment an order_food record.
-   * @param {Number} orderId
+   * @param {Object} order
    * @param {Number} foodId
    */
   increment(orderId, foodId) {
-    console.log(orderId, foodId);
     const queryString = `
       INSERT INTO ${this.tableName} (food_id, order_id)
       VALUES ($1, $2)
@@ -25,9 +43,13 @@ class OrderFoodsTable {
       SET quantity = ${this.tableName}.quantity + 1 WHERE ${this.tableName}.food_id = $1 AND ${this.tableName}.order_id = $2
       RETURNING *;
       `;
-    const values = [ foodId, orderId ];
+    const values = [ foodId, order.id ];
     return this.db
-      .query(queryString, values);
+      .query(queryString, values)
+      .then(items => {
+        order.items = items;
+        return order;
+      });
   }  // If using catch(), add in route
 
 }
