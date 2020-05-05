@@ -18,3 +18,8 @@ module.exports = (db) => {
   });
   return router;
 };
+
+// HTML Page Input Fields: <input type="hidden" id="something" name="something"></input> --> req.body
+// HTML Page Submit Button: <button type="submit"></button>
+// In-Page JQuery to assign food_id to hiden form field: $('#something').val(menu_item_id);
+// Then redirect to ____ in route

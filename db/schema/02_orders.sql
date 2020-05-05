@@ -3,6 +3,6 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   customer_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   order_date_time TIMESTAMP NOT NULL,
-  pick_up_date_time TIMESTAMP NOT NULL,
+  pick_up_date_time TIMESTAMP,
   complete BOOLEAN DEFAULT FALSE
 );
