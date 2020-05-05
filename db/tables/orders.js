@@ -44,7 +44,7 @@ class OrdersTable {
       .query(queryString, [id])
       .then(data => {
         const order = data[0];
-        return this.db.orderFoods.getByOrder(()
+        return this.db.orderFoods.getByOrder(order);
       });
   }
 
