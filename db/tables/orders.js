@@ -11,13 +11,23 @@ class OrdersTable {
   }
 
   /**
-   * Add an orders record.
+   * Add an order record.
+   * @param {Number} customerId - Unique id from a user's cookie session.
+   * @param {Array} orderItems -
    */
-  add(order) {
-    const queryString = ``;
-    values = [];
+  add(customerId, orderItems) {
+    const queryString = `
+      INSERT INTO ${this.tableName} (customer_id, order_date_time)
+      VALUES ($1, NOW())
+      RETURNING id;
+    `;
+    values = [ customerId ];
     return this.db
-      .query(queryString, values);
+      .query(queryString, values)
+      .then(res => {
+        const orderId = res.rows[0];
+        return this.db.orderFoods.add(orderId, orderItems);
+      });  // If using catch(), add in route
   }
 
   /**
@@ -25,20 +35,34 @@ class OrdersTable {
    * @param {Number} id
    */
   get(id) {
-    const queryString = ``;
+    const queryString = `
+      SELECT *
+      FROM ${this.tableName}
+      WHERE id = $1;
+    `;
     return this.db
       .query(queryString, [id]);
   }
 
   /**
    * Update an order.
-   * @param {Object} order
+   * @param {Number} orderId
+   * @param {Array} orderItems
    */
-  post(order) {
-    const queryString = ``;
-    values = [];
+  update(orderId, orderItems) {
+    const queryString = `
+      UPDATE ${this.tableName}
+      SET order_date_time = NOW()
+      WHERE orders.id = $1
+      RETURNING id;
+    `;
+    values = [ orderId ];
     return this.db
-      .query(queryString, values);
+      .query(queryString, values)
+      .then(res => {
+        const orderId = res.rows[0];
+        return this.db.orderFoods.update(orderId, orderItems);
+      });  // If using catch(), add in route
   }
 
 }
