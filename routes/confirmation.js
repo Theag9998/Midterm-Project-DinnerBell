@@ -1,17 +1,16 @@
 const express = require('express');
 const router  = express.Router();
 
-
 module.exports = (db) => {
-  router.get("/", (req, res, next) => {
+    router.get("/", (req, res, next) => {
     res.render('pages/confirmation');
   })
 
-  router.get("/", (req, res, next) => {
-    db.query(`SELECT pick_up_date_time FROM orders;`)
+  router.get("/:id", (req, res, next) => {
+    db.query(`SELECT pick_up_date_time FROM orders WHERE id = $1`, [req.params.id])
       .then(data => {
-        const orders = data.rows;
-        res.json({ users });
+        console.log('data :>> ', data);
+        res.json({ orders: data.rows[0] });
       })
       .catch(err => {
         res
