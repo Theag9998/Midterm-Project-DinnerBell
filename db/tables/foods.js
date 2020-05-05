@@ -11,6 +11,15 @@ class FoodsTable {
   }
 
   /**
+   * Retrieve all foods from database.
+   */
+  all() {
+    const queryString = `SELECT * FROM foods`;
+    return this.db
+      .query(queryString);
+  }
+
+  /**
    * Add a food record.
    * @param {Object} food
    */
