@@ -48,8 +48,8 @@ app.use("/api/homePage", homePageRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/confirmation", confirmationRoutes(db));
 app.use("/menu", menuRoutes(db));
-app.use("/my-orders", myOrdersRoutes());
-app.use("/checkout", checkoutRoutes());
+app.use("/my-orders", myOrdersRoutes(db));
+app.use("/checkout", checkoutRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
