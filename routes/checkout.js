@@ -3,9 +3,11 @@ const router  = express.Router();
 const accountSid = 'AC374bb6cd27fbae9a937c7526526c433e';
 const authToken = '965169039fd80dbc5f4ef68bbaab44d5';
 
-const client = require ('twilio') (accountSid, authToken);
+//const client = require ('twilio') (accountSid, authToken);
 
-// //SMS to Customer
+
+//SMS to Customer
+
 // client.messages.create({
 //   to: +7783192221,
 //   from: '+15153163985',
@@ -26,12 +28,20 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     res.render("pages/checkout")
   });
+
+
+
+
   return router;
 };
 
 
 
-// ORIGINAL EXAMPLE BELOW
+
+
+
+
+
 // router.get("/", (req, res) => {
 //   db.query(`SELECT * FROM users;`)
 //     .then(data => {
@@ -43,5 +53,4 @@ module.exports = (db) => {
 //         .status(500)
 //         .json({ error: err.message });
 //     });
-// });
-// return router;
+//   });
