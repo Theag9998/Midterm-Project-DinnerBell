@@ -6,18 +6,12 @@
     <div class="container">
       <h1>Papa Joe's Pizza</h1>
       <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-      <form action="/checkout" method="POST">
-        <% for (let element of data) { %>
-          <input type="hidden" id=<%= element.id %> name="something"></input>
-          <buttom type="submit" class="btn btn-primary my-2">View Cart</button>
-        <% } %>
-      </form>
+      <a class="btn btn-primary my-2" href="#">View Cart</a>
     </div>
   </section>
 
   <div class="album py-5 bg-light">
     <div class="container">
-      <!-- <form> -->
       <% for (let item of data) { %>
 
         <div class="row">
@@ -30,9 +24,8 @@
                 <p class="card-text"><%= item.description %></p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <!-- <input id="" type="radio"> -->
                     <button type="button" class="add-to-cart" value=<%=item.id%>>Add to cart</button>
-                    <button type="button" class="remove-from-cart">Remove from cart</button>
+                    <button type="button" class="remove-from-cart" value=<%=item.id%>>Remove from cart</button>
                   </div>
                   <div><%= item.size %></div>
                   <small class="text-muted"> $<%= item.cost %>.00</small>

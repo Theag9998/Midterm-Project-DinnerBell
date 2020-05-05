@@ -11,11 +11,8 @@
 
 $(document).ready(function() {
   $('.add-to-cart').click((event) => {
-    const $cartValue = $("#id").val('.add-to-cart');
-  })
-
-
-
+    $.post('/checkout', event.target.value);
+  });
 });
 //In-Page JQuery to assign food_id to hidden form field: $('add-to-cart').click( (event)=> {
   // $('#something').val(menu_item_id);
