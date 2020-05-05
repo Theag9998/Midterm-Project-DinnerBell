@@ -6,32 +6,43 @@
     <div class="container">
       <h1>Papa Joe's Pizza</h1>
       <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">View Cart</a>
-      </p>
+      <form action="/checkout" method="POST">
+        <% for (let element of data) { %>
+          <input type="hidden" id=<%= element.id %> name="something"></input>
+          <buttom type="submit" class="btn btn-primary my-2">View Cart</button>
+        <% } %>
+      </form>
     </div>
   </section>
 
   <div class="album py-5 bg-light">
     <div class="container">
+      <!-- <form> -->
+      <% for (let item of data) { %>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <div><%= item.category %></div>
+              <div><%= item.name %></div>
+              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<%= item.picture %>">
+              <div class="card-body">
+                <p class="card-text"><%= item.description %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <!-- <input id="" type="radio"> -->
+                    <button type="button" class="add-to-cart" value=<%=item.id%>>Add to cart</button>
+                    <button type="button" class="remove-from-cart">Remove from cart</button>
+                  </div>
+                  <div><%= item.size %></div>
+                  <small class="text-muted"> $<%= item.cost %>.00</small>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
-        </div>
       </div>
+      <% } %>
+    </form>
     </div>
   </div>
 
