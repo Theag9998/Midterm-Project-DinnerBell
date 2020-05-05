@@ -11,36 +11,45 @@ class OrderFoodsTable {
   }
 
   /**
-   * Retrieve orderFoods records by orderId.
-   * @param {Number} id
+   * Retrieves all foods by order.
+   * @param {Object} order
    */
-  getByOrder(id) {
+  getByOrder(order) {
     const queryString = `
       SELECT *
       FROM ${this.tableName}
-      WHERE order_id = $1;
+      WHERE ${this.tableName}.order_id = $1;
     `;
+    const values = [ order.id ];
     return this.db
-      .query(queryString, [id]);
+      .query(queryString, values)
+      .then(items => {
+        order.items = items;
+        return order;
+      });
   }
 
   /**
-   * Increment a orderFood.
-   * @param {Number} orderId
-   * @param {Object} orderFoods
+   * Increment an order_food record.
+   * @param {Object} order
+   * @param {Number} foodId
    */
-  increment(orderId, foodId) {
+  increment(order, foodId) {
     const queryString = `
       INSERT INTO ${this.tableName} (food_id, order_id)
       VALUES ($1, $2)
-      RETURNING *
-      ON CONFLICT (id) DO
-      UPDATE ${this.tableName} SET quantity = quantity + 1 WHERE food_id = $1 AND order_id = $2
+      ON CONFLICT (food_id, order_id)
+      DO UPDATE
+      SET quantity = ${this.tableName}.quantity + 1 WHERE ${this.tableName}.food_id = $1 AND ${this.tableName}.order_id = $2
       RETURNING *;
       `;
-    const values = [ foodId, orderId ];
+    const values = [ foodId, order.id ];
     return this.db
-      .query(queryString, values);
+      .query(queryString, values)
+      .then(items => {
+        order.items = items;
+        return order;
+      });
   }  // If using catch(), add in route
 
 }

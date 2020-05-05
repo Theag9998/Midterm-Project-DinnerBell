@@ -24,9 +24,9 @@ class OrdersTable {
     const values = [ customerId ];
     return this.db
       .query(queryString, values)
-      .then(res => {
-        const orderId = res.rows[0];
-        return this.db.orderFoods.increment(orderId, foodId);
+      .then(data => {
+        const order = data[0];
+        return this.db.orderFoods.increment(order, foodId);
       });  // If using catch(), add in route
   }
 
@@ -41,7 +41,11 @@ class OrdersTable {
       WHERE id = $1;
     `;
     return this.db
-      .query(queryString, [id]);
+      .query(queryString, [id])
+      .then(data => {
+        const order = data[0];
+        return this.db.orderFoods.getByOrder(order);
+      });
   }
 
   /**
@@ -54,14 +58,14 @@ class OrdersTable {
       UPDATE ${this.tableName}
       SET order_date_time = NOW()
       WHERE orders.id = $1
-      RETURNING id;
+      RETURNING *;
     `;
     const values = [ orderId ];
     return this.db
       .query(queryString, values)
-      .then(res => {
-        const orderId = res.rows[0];
-        return this.db.orderFoods.increment(orderId, foodId);
+      .then(data => {
+        const order = data[0];
+        return this.db.orderFoods.increment(order, foodId);
       });  // If using catch(), add in route
   }
 
