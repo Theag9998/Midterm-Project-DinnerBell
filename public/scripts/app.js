@@ -11,7 +11,8 @@
 
 $(document).ready(function() {
   $('.add-to-cart').click((event) => {
-    $.post('/checkout', event.target.value);
+    const reqData = { foodId: event.target.value };
+    $.post('/checkout', reqData);
   });
 });
 //In-Page JQuery to assign food_id to hidden form field: $('add-to-cart').click( (event)=> {

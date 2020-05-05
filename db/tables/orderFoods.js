@@ -11,24 +11,6 @@ class OrderFoodsTable {
   }
 
   /**
-   * Add a orderFood record.
-   * @param {Object} orderFood
-   */
-  add(orderId, orderFoods) {
-    let queryString = `INSERT INTO ${this.tableName} (food_id, quantity) VALUES `;
-    let values = [];
-    let counter = 1;
-    for (const orderFood of orderFoods) {
-      queryString += `($${counter}, $${counter + 1}, $${counter + 2}), `;
-      values = values.concat([ orderFood.food_id, orderId, orderFood.quantity ]);
-      counter += 3;
-    }
-    queryString += "RETURNING *;"
-    return this.db
-      .query(queryString, values);
-  }  // If using catch(), add in route
-
-  /**
    * Retrieve orderFoods records by orderId.
    * @param {Number} id
    */
@@ -43,20 +25,20 @@ class OrderFoodsTable {
   }
 
   /**
-   * Update a orderFood.
+   * Increment a orderFood.
    * @param {Number} orderId
    * @param {Object} orderFoods
    */
-  update(orderId, orderFoods) {
-    const queries = [];
-    let values = [];
-    let counter = 1;
-    for (const orderFood of orderFoods) {
-      queries.push(`UPDATE ${this.tableName} SET food_id = $${counter}, order_id = $${counter + 1}, quantity = $${counter + 2} WHERE order_foods.id = $${counter + 3};`);
-      values = values.concat([ orderFood.food_id, orderId, orderFood.quantity, orderFood.id]);
-      counter += 4;
-    }
-    const queryString = queries.join('\n');
+  increment(orderId, foodId) {
+    const queryString = `
+      INSERT INTO ${this.tableName} (food_id, order_id)
+      VALUES ($1, $2)
+      RETURNING *
+      ON CONFLICT (id) DO
+      UPDATE ${this.tableName} SET quantity = quantity + 1 WHERE food_id = $1 AND order_id = $2
+      RETURNING *;
+      `;
+    const values = [ foodId, orderId ];
     return this.db
       .query(queryString, values);
   }  // If using catch(), add in route

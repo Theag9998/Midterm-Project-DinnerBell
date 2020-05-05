@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
       db.foods.all().then((data) => {
-        console.log(data)
+        // console.log(data)
         res.render("pages/menu", { data });
       })
       .catch(err => {

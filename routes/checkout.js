@@ -37,18 +37,34 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    const customerId = req.sessions.user_id;
-    const orderItems = req.body;
-    return db.orders.add(customerId, orderItems)
-      .then(() => {
-        // TODO: Change redirect to render and pass values?
-        res.redirect("/confirmation");
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    const customerId = 1;
+    const orderId = null;
+    const foodId = req.body.foodId;
+    if (!orderId) {
+      return db.orders.add(customerId, foodId)
+        .then((data) => {
+          console.log(data);
+          // TODO: Change redirect to render and pass values?
+          res.redirect("/confirmation");
+        })
+        /* .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        }); */
+      } else {
+        return db.orders.update(orderId, foodId)
+        .then((data) => {
+          console.log(data);
+          // TODO: Change redirect to render and pass values?
+          res.redirect("/confirmation");
+        })
+        /* .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        }); */
+      }
   });
 
   router.put("/:id", (req, res) => {
