@@ -25,7 +25,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 150px;
+  height: 100px;
 }
 
 .logo {
@@ -35,20 +35,20 @@ nav {
   background-color: #f19b79;
   color: white;
   padding: 0px 15px 10px 15px;
-  height: 150px;
+  height: 100px;
 
 }
 
 .app-name {
   font-family: Unica one;
-  font-size: 90px;
-  height: 90px;
+  width: max-content;
+  font-size: 50px;
 }
 
 .app-slogan {
   font-family: quicksand;
   width: fit-content;
-  font-size: xx-large;
+  font-size: larger;
   align-self: center;
 }
 
@@ -63,7 +63,7 @@ nav {
   text-decoration: none;
   font-family: quicksand;
   padding: 20px 70px;
-  font-size: xxx-large;
+  font-size: xx-large;
   color: #246160;
 }
 
@@ -77,6 +77,7 @@ nav {
   justify-content: center;
   padding: 20px;
   color: #246160;
+  width: 250px;
 }
 
 
@@ -84,7 +85,7 @@ nav {
 .fas {
   width: fit-content;
   align-self: center;
-  font-size: xxx-large;
+  font-size: xx-large;
   color: #246160;
 }
 
@@ -96,7 +97,7 @@ nav {
   margin-top: 0px;
     margin-bottom: 0px;
     font-family: quicksand;
-    font-size: x-large;
+    font-size: small;
     padding-top: 15px;
     color: #246160;
 }
