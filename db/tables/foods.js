@@ -35,7 +35,11 @@ class FoodsTable {
    * @param {Number} id
    */
   get(id) {
-    const queryString = ``;
+    const queryString = `
+      SELECT *
+      FROM foods
+      WHERE id = $1;
+    `;
     return this.db
       .query(queryString, [id]);
   }

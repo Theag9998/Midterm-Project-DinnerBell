@@ -69,6 +69,26 @@ class OrdersTable {
       });  // If using catch(), add in route
   }
 
+  /**
+   * Update the pick up time for an order.
+   * @param {Number} orderId
+   * @param {Number} minutes
+   */
+  confirm(orderId, minutes) {
+    const queryString = `
+      UPDATE ${this.tableName}
+      SET pick_up_date_time = NOW() + $1
+      WHERE orders.id = $2
+      RETURNING *;
+    `;
+    const values = [ orderId, minutes * 60 * 1000 ];
+    return this.db
+      .query(queryString, values)
+      .then(data => {
+        return data[0];
+      });  // If using catch(), add in route
+  }
+
 }
 
 module.exports = OrdersTable;
