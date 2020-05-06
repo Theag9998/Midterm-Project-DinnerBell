@@ -1,48 +1,50 @@
-<%- include('../partials/head') %>
-<%- include('../partials/header') %>
+<!-- <%- include('../partials/head') %> -->
+<!-- <%- include('../partials/header') %> -->
 
 
-<main >
-  <body></body>
-    <div></div>
-    <h3 style="text-align: center;">My Pending Orders</h3>
-    <table class="table">
+<main class="my-orders-main">
+  <div class="my-orders-div"></div>
+  <h3 class="my-orders">My Pending Orders</h3>
+  <div class="my-orders-table">
+    <table class="my-table table">
       <thead>
         <tr>
           <th class="table-header" scope="col">Order Date</th>
-          <th class="table-header" scope="col">View Order</th>
+          <th class="table-header justify-right" scope="col">View Order</th>
         </tr>
       </thead>
       <tbody>
         </tr>
         <% for (let order of orders.pending) { %>
           <tr>
-            <td><%= new Date(order.order_date_time) %></td>
-            <td><button type="button" class="my-orders-button">View</button></td>
+            <td><%= new Date(order.order_date_time).toDateString() %></td>
+            <td><button type="button" class="my-orders-button  justify-right">View</button></td>
           </tr>
         <% }%>
       </tbody>
     </table>
-    <div></div>
-    <h3>My Previous Orders</h3>
-    <table class="table">
+  </div>
+  <div class="my-orders-div"></div>
+  <h3 class="my-orders">My Previous Orders</h3>
+  <div class="my-orders-table">
+    <table class="my-table table">
       <thead>
         <tr>
           <th class="table-header" scope="col">Order Date</th>
-          <th class="table-header" scope="col">View Order</th>
+          <th class="table-header  justify-right" scope="col">View Order</th>
         </tr>
       </thead>
       <tbody>
         <% for(let order of orders.completed) { %>
           <tr>
-          <td><%= order.order_date_time %></td>
-          <td><button type="button" class="my-orders-button">View</button></td>
+          <td><%= new Date(order.order_date_time).toDateString() %></td>
+          <td><button type="button" class="my-orders-button  justify-right">View</button></td>
           </tr>
         <% } %>
       </tbody>
     </table>
-    <div></div>
-    <%- include('../partials/footer') %>
-  </body>
+  </div>
+  <div class="my-orders-div"></div>
+  <%- include('../partials/footer') %>
 </main>
 

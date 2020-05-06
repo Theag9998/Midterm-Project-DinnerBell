@@ -1,17 +1,38 @@
 
-main {
+.my-orders-main {
   font-family: quicksand;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 15px;
 }
 
-div {
+.my-orders-div {
   height: 50px;
 
 }
 
 h3 {
+  display: flex;
+}
+
+.my-orders {
+  display: flex;
+  justify-content: center;
+
+
+}
+
+.my-orders-table {
+  display: flex;
+  justify-content: center;
+}
+
+.my-table {
+  width: 70% !important;
+}
+
+.justify-right {
   display: flex;
 }
 
