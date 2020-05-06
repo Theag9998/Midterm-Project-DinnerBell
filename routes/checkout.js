@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const sms = require('../sendsms')
 
 module.exports = (db) => {
 
@@ -36,6 +37,7 @@ module.exports = (db) => {
     const foodId = req.body.foodId;
     return db.orders.update(orderId, foodId)
       .then(data => {
+        sms.sendMessage('7788726958', 'Test message')
         res.redirect('/confirmation');
       })
       .catch(err => {
@@ -44,5 +46,9 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+
+
+
   return router;
 };
