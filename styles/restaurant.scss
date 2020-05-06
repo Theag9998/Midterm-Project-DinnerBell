@@ -1,0 +1,36 @@
+main.restaurant-main {
+  font-family: quicksand;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+  background-color: rgba(255,255,255,0.6);
+}
+div {
+  height: 50px;
+}
+.my-orders-button {
+  background-color: #C3E2CE;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-family: quicksand;
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+.my-orders-button:hover {
+  background-color: #246160;
+  color: #C3E2CE;
+}
+.table-header {
+  color: #246160;
+  font-family: unica one;
+  font-size: x-large;
+}
+h3.restaurant-title {
+  text-align: center;
+}
+
+table.table {
+  text-align: center;
+}
