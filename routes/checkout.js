@@ -1,24 +1,26 @@
 const express = require('express');
 const router  = express.Router();
-const sms = require('../sendsms');
+// const sms = require('../sendsms');
 
 
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    const orderId = req.session.order_id;
+    const customerId = 1;
     db.orders
-      .get(orderId)
-      .then(data => {
+    .current(customerId)
+    .then(data => {
+      if (data) {
         res.render("pages/checkout", { data });
-      });
-
+      } else {
+        res.redirect('/menu');
+      }
+    });
   });
 
   router.post("/", (req, res) => {
     const customerId = 1;
-    const orderId = req.session.order_id || null;
-    const foodId = req.body.foodId;
+    const orderId = null;
 
     let promise;
     if (!orderId) {
@@ -42,19 +44,19 @@ module.exports = (db) => {
 
   router.put("/", (req, res) => {
     customerId = 1;
-    const orderId = 1; //req.session.order_id;
-    const foodId = req.body.foodId;
+    const orderId = req.body.orderId;
+    const orderFoods = req.body;
     return db.orders
-      .update(orderId, foodId)
+      .update(orderId, orderFoods)
       .then(data => {
-        sms.sendMessage(process.env.PHONE, 'Sending to Guest')
+        // sms.sendMessage(process.env.PHONE, 'Sending to Guest')
         res.redirect('/confirmation');
       })
-      .catch(err => {
+      /* .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+      }); */
   });
 
 
