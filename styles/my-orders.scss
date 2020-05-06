@@ -1,5 +1,59 @@
 
-div {
-  height: 30px;
+.my-orders-main {
+  font-family: quicksand;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+}
 
+.my-orders-div {
+  height: 50px;
+
+}
+
+h3 {
+  display: flex;
+}
+
+.my-orders {
+  display: flex;
+  justify-content: center;
+
+
+}
+
+.my-orders-table {
+  display: flex;
+  justify-content: center;
+}
+
+.my-table {
+  width: 70% !important;
+}
+
+.justify-right {
+  display: flex;
+}
+
+.my-orders-button {
+  background-color: #c3e2ce;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-family: quicksand;
+  border-radius: 10px;
+  border: none;
+  color: white;
+}
+
+.my-orders-button:hover {
+  background-color: #246160;
+
+  color: #c3e2ce;
+}
+
+.table-header {
+  color: #246160;
+  font-family: unica one;
+  font-size: x-large;
 }
