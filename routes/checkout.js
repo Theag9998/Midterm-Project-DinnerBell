@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const sms = require('../sendsms');
+// const sms = require('../sendsms');
 
 
 module.exports = (db) => {
@@ -42,23 +42,32 @@ module.exports = (db) => {
 
   router.put("/", (req, res) => {
     customerId = 1;
-    const orderId = 1; //req.session.order_id;
-    const foodId = req.body.foodId;
-    return db.orders
-      .update(orderId, foodId)
-      .then(data => {
-        sms.sendMessage(process.env.PHONE, 'Sending to Guest')
-        res.redirect('/confirmation');
-      })
-      .catch(err => {
+    const orderFoods = [];
+    for (const i in Object.keys(req.body)) {
+      const key = Object.keys(req.body)[i];
+      const orderFood = {
+        id: key,
+        quantity: req.body[key]
+      }
+      orderFoods.push(orderFood);
+    }
+    console.log(orderFoods);
+    db.orders
+      .current(customerId)
+      .then(order => {
+        return db.orders
+          .submit(order.id, orderFoods)
+          .then(data => {
+            console.log(data);
+            // sms.sendMessage(process.env.PHONE, 'Sending to Guest')
+            res.render('pages/confirmation', { data });
+          })
+      /* .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
   });
-
-
-
 
   return router;
 };
