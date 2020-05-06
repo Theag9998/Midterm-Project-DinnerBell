@@ -10,6 +10,14 @@ class OrdersTable {
     this.tableName = 'orders';
   }
 
+  all(customerId = null) {
+    return this.db.query(`
+    SELECT * FROM orders
+    WHERE customer_id = $1
+    ORDER BY order_date_time DESC
+    `, [1]);
+  };
+
   /**
    * Add an order record.
    * @param {Number} customerId - Unique id from a user's cookie session.
