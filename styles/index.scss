@@ -48,7 +48,7 @@ nav {
   width: max-content;
   font-size: 50px;
   text-decoration: none;;
-  color:#246160;
+  color:white;
 }
 
 .app-slogan {
@@ -57,7 +57,7 @@ nav {
   font-size: larger;
   align-self: center;
   text-decoration: none;
-  color: #246160;
+  color: white;
 }
 
 .page-links {
@@ -93,6 +93,7 @@ nav {
   align-self: center;
   font-size: xx-large;
   color: #246160;
+  text-decoration: none;
 }
 
 .fas:hover {
@@ -101,11 +102,13 @@ nav {
 
 .nav-user {
   margin-top: 0px;
-    margin-bottom: 0px;
-    font-family: quicksand;
-    font-size: small;
-    padding-top: 15px;
-    color: #246160;
+  margin-bottom: 0px;
+  width: fit-content;
+  align-self: center;
+  font-family: quicksand;
+  font-size: small;
+  padding-top: 15px;
+  color: #246160;
 }
 
 .main {
