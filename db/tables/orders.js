@@ -52,7 +52,7 @@ class OrdersTable {
    * @param {Number} customerId
    * @param {Number} foodId
    */
-  addFood(customerId, foodId) {
+  async addFood(customerId, foodId) {
     const queryString = `
       SELECT id
       FROM orders
@@ -64,7 +64,7 @@ class OrdersTable {
       .query(queryString, values)
       .then(data => {
         if (data.length === 0) {
-          return null;
+          return this.add(customerId, foodId);
         } else {
           const orderId = data[0];
           return this.db.orderFoods.increment(orderId, foodId);
@@ -147,7 +147,7 @@ class OrdersTable {
       SELECT *
       FROM orders
       WHERE customer_id = $1
-      -- AND order_date_time IS NULL;
+      AND order_date_time IS NULL;
     `;
     const values = [ customerId ];
     return this.db
