@@ -20,7 +20,9 @@ h3 {
 .my-orders {
   display: flex;
   justify-content: center;
-
+  font-family: unica one;
+  font-size: xx-large;
+  color: #f19b79;
 
 }
 
@@ -32,6 +34,18 @@ h3 {
 // .my-table {
 //   width: 70% !important;
 // }
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  padding: 10px 80px;
+}
+
+table.center {
+  width:70%;
+  margin-left:15%;
+  margin-right:15%;
+}
 
 .justify-right {
   display: flex;
@@ -54,6 +68,5 @@ h3 {
 
 .table-header {
   color: #246160;
-  font-family: unica one;
-  font-size: x-large;
+  font-size: large;
 }
