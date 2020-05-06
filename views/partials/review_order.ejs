@@ -1,4 +1,4 @@
-<form id="checkout-form" action="/checkout" method="POST">
+<form id="checkout-form" action="/checkout?_method=PUT" method="POST">
   <p>Please review your order.</p>
   <input type='hidden' name='orderId' placeholder=<%= data.id %>></input>
   <% let counter = 1 %>
