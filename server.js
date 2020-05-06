@@ -46,7 +46,7 @@ const confirmationRoutes = require("./routes/confirmation")
 const menuRoutes = require("./routes/menu")
 const myOrdersRoutes = require ("./routes/my-orders");
 const checkoutRoutes = require ("./routes/checkout");
-
+const restaurantRoutes = require ("./routes/restaurant");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -56,6 +56,7 @@ app.use("/confirmation", confirmationRoutes(db));
 app.use("/menu", menuRoutes(db));
 app.use("/my-orders", myOrdersRoutes(db));
 app.use("/checkout", checkoutRoutes(db));
+app.use("/restaurant", restaurantRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 

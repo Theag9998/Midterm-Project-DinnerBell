@@ -1,45 +1,5 @@
-<!--
+<%- include('partials/head') %>
 
-<main >
-  <body></body>
-    <div>
-    </div>
-    <h3>My Pending Orders</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Order Date</th>
-          <th scope="col">View Order</th>
-        </tr>
-      </thead>
-      <tbody>
-        </tr>
-        <% for (let order of orders.pending) { %>
-          <tr>
-            <td><%= order.order_date_time %></td>
-            <td><button type="button" class="btn btn-primary">View Order</button></td>
-          </tr>
-        <% }%>
-      </tbody>
-    </table>
-    <div></div>
-    <h3>My Previous Orders</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Order Date</th>
-          <th scope="col">View Order</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for(let order of orders.completed) { %>
-          <tr>
-          <td><%= order.order_date_time %></td>
-          <td><button type="button" class="btn btn-primary">View Order</button></td>
-          </tr>
-        <% } %>
-      </tbody>
-    </table>
-    <%- include('../partials/header') %>
-  </body>
-</main> -->
+<%- include('partials/header') %>
+
+<%- include('partials/footer') %>
