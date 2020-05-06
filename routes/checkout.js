@@ -8,33 +8,25 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     const customerId = 1;
     db.orders
-    .current(customerId)
-    .then(data => {
-      if (data) {
-        res.render("pages/checkout", { data });
-      } else {
-        res.redirect('/menu');
-      }
-    });
+      .current(customerId)
+      .then(data => {
+        console.log(data);
+        if (data) {
+          res.render("pages/checkout", { data });
+        } else {
+          res.redirect('/menu');
+        }
+      });
   });
 
   router.post("/", (req, res) => {
     const customerId = 1;
-    const orderId = null;
-
-    let promise;
-    if (!orderId) {
-      promise = db.orders
-        .add(customerId, foodId)
-    } else {
-      promise = db.orders
-        .update(orderId, foodId)
-    }
-
-    promise.then((data) => {
-      // console.log(data);
-      req.session.order_id = data.id;
-    })
+    const foodId = req.body.foodId;
+    db.orders
+      .addFood(customerId, foodId)
+      .then((data) => {
+        res.json(data);
+      });
     /* .catch(err => {
       res
         .status(500)

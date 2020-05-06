@@ -48,12 +48,28 @@ class OrdersTable {
   }
 
   /**
-   * Update the quantity of an order's food.
-   * @param {Number} orderId
+   * addFood the quantity of an order's food.
+   * @param {Number} customerId
    * @param {Number} foodId
    */
-  update(orderId, foodId) {
-    return this.db.orderFoods.increment(orderId, foodId);
+  addFood(customerId, foodId) {
+    const queryString = `
+      SELECT id
+      FROM orders
+      WHERE customer_id = $1
+      AND order_date_time IS NULL;
+    `;
+    const values = [ customerId ];
+    return this.db
+      .query(queryString, values)
+      .then(data => {
+        if (data.length === 0) {
+          return null;
+        } else {
+          const orderId = data[0];
+          return this.db.orderFoods.increment(orderId, foodId);
+        }
+      })
   }
 
   /**
@@ -61,8 +77,24 @@ class OrdersTable {
    * @param {Number} orderId
    * @param {Number} foodId
    */
-  remove(orderId, foodId) {
-    return this.db.orderFoods.decrement(orderId, foodId);
+  removeFood(customerId, foodId) {
+    const queryString = `
+      SELECT id
+      FROM orders
+      WHERE customer_id = $1
+      AND order_date_time IS NULL;
+    `;
+    const values = [ customerId ];
+    return this.db
+      .query(queryString, values)
+      .then(data => {
+        if (data.length === 0) {
+          return null;
+        } else {
+          const orderId = data[0];
+          return this.db.orderFoods.decrement(orderId, foodId);
+        }
+      })
   }
 
   /**
@@ -115,7 +147,7 @@ class OrdersTable {
       SELECT *
       FROM orders
       WHERE customer_id = $1
-      AND order_date_time IS NULL;
+      -- AND order_date_time IS NULL;
     `;
     const values = [ customerId ];
     return this.db
