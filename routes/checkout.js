@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const sms = require('../sendsms');
+// const sms = require('../sendsms');
 
 
 module.exports = (db) => {
@@ -47,7 +47,7 @@ module.exports = (db) => {
     return db.orders
       .update(orderId, foodId)
       .then(data => {
-        sms.sendMessage(process.env.PHONE, 'Sending to Guest')
+        // sms.sendMessage(process.env.PHONE, 'Sending to Guest')
         res.redirect('/confirmation');
       })
       .catch(err => {
