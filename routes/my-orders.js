@@ -6,11 +6,7 @@ module.exports = (db) => {
 
 
 
-    return db.query(`
-    SELECT * FROM orders
-    WHERE customer_id = $1
-    ORDER BY order_date_time DESC
-    `, [1])
+    return db.orders.all(1)
     .then(data => {
       let orders = {
         completed: data.filter(o => o.complete),
