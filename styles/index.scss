@@ -1,7 +1,7 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #c3e2ce;
+  background-color: white;
 
   h1 {
     color: #246160;
@@ -9,6 +9,7 @@ body {
     padding: 10px;
     font-family: Unica one;
     font-size: 70px;
+    margin-bottom: inherit;
   }
 }
 
@@ -123,28 +124,17 @@ nav {
   font-size: 25px;
 }
 
-.order-button {
-  background-color: #c3e2ce;
-  padding: 10px 20px;
-  font-size: 24px;
-  font-family: quicksand;
-  border-radius: 10px;
-}
-
-.order-button:hover {
-  background-color:#246160;
- 
-}
-
-.order-button-link  {
-  text-decoration: none;
-
-}
 a.order-button-link {
   &:hover {
     color: white;
     text-decoration: none;
+    background-color:#246160
   }
   color: #246160;
   text-decoration: none;
+  padding: 20px 30px;
+  background-color: #c3e2ce;
+  border-radius: 10px;
+  font-family: quicksand;
+  font-weight: bold;
 }
