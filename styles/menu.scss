@@ -42,7 +42,7 @@ justify-content: center;
 .food-container {
   border: solid 10px #246160;
   margin: 3rem;
-  background-image: url("../public/images/brick-wall.png");
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
 }
 .card-container {
   border: solid 5px #246160;
@@ -70,4 +70,30 @@ justify-content: center;
 .col-md-4 {
   flex: 0 0 70%;
   max-width: 95%;
+}
+.card-top {
+  font-size: 30px;
+}
+.food-details {
+  display: flex;
+  justify-content: space-between;
+}
+.card-body {
+  padding: 10px;
+}
+.card-text {
+  font-size: 20px;
+  padding: 7px;
+}
+.add-to-cart {
+  background-color: #c3e2ce;
+  border-radius: 5px;
+}
+.remove-from-cart {
+  background-color: #c3e2ce;
+  border-radius: 5px;
+}
+.food-details {
+  font-size: 20px;
+  padding: 7px;
 }
