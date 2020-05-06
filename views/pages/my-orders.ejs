@@ -1,42 +1,65 @@
 <%- include('../partials/head') %>
 <%- include('../partials/header') %>
 
+<<<<<<< HEAD
     <h3>My Pending Orders</h3>
+=======
+
+<main class="my-orders-main">
+  <div class="my-orders-div"></div>
+  <h3 class="my-orders">My Pending Orders</h3>
+  <div class="my-orders-table">
+>>>>>>> master
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Order Date</th>
-          <th scope="col">View Order</th>
+          <th class="table-header" scope="col">Order Date</th>
+          <th class="table-header justify-right" scope="col">View Order</th>
         </tr>
       </thead>
       <tbody>
         </tr>
         <% for (let order of orders.pending) { %>
           <tr>
-            <td><%= order.order_date_time %></td>
-            <td><button type="button" class="btn btn-primary">View Order</button></td>
+            <td><%= new Date(order.order_date_time).toDateString() %></td>
+            <td><button type="button" class="my-orders-button  justify-right">View</button></td>
           </tr>
         <% }%>
       </tbody>
     </table>
+<<<<<<< HEAD
     
     <h3>My Previous Orders</h3>
+=======
+  </div>
+  <div class="my-orders-div"></div>
+  <h3 class="my-orders">My Previous Orders</h3>
+  <div class="my-orders-table">
+>>>>>>> master
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Order Date</th>
-          <th scope="col">View Order</th>
+          <th class="table-header" scope="col">Order Date</th>
+          <th class="table-header  justify-right" scope="col">View Order</th>
         </tr>
       </thead>
       <tbody>
         <% for(let order of orders.completed) { %>
           <tr>
-          <td><%= order.order_date_time %></td>
-          <td><button type="button" class="btn btn-primary">View Order</button></td>
+          <td><%= new Date(order.order_date_time).toDateString() %></td>
+          <td><button type="button" class="my-orders-button  justify-right">View</button></td>
           </tr>
         <% } %>
       </tbody>
     </table>
+<<<<<<< HEAD
     <%- include('../partials/footer') %>
 
+=======
+  </div>
+  <div class="my-orders-div"></div>
+
+</main>
+<%- include('../partials/footer') %>
+>>>>>>> master
 

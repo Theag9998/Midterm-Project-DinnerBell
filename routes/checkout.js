@@ -6,33 +6,27 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    const orderId = req.session.order_id;
+    const customerId = 1;
     db.orders
-      .get(orderId)
+      .current(customerId)
       .then(data => {
-        res.render("pages/checkout", { data });
+        console.log(data);
+        if (data) {
+          res.render("pages/checkout", { data });
+        } else {
+          res.redirect('/menu');
+        }
       });
-
   });
 
   router.post("/", (req, res) => {
     const customerId = 1;
-    const orderId = req.session.order_id || null;
     const foodId = req.body.foodId;
-
-    let promise;
-    if (!orderId) {
-      promise = db.orders
-        .add(customerId, foodId)
-    } else {
-      promise = db.orders
-        .update(orderId, foodId)
-    }
-
-    promise.then((data) => {
-      // console.log(data);
-      req.session.order_id = data.id;
-    })
+    db.orders
+      .addFood(customerId, foodId)
+      .then((data) => {
+        res.json(data);
+      });
     /* .catch(err => {
       res
         .status(500)
@@ -42,23 +36,33 @@ module.exports = (db) => {
 
   router.put("/", (req, res) => {
     customerId = 1;
-    const orderId = 1; //req.session.order_id;
-    const foodId = req.body.foodId;
-    return db.orders
-      .update(orderId, foodId)
-      .then(data => {
-        // sms.sendMessage(process.env.PHONE, 'Sending to Guest')
-        res.redirect('/confirmation');
-      })
-      .catch(err => {
+    const orderFoods = [];
+    for (const i in Object.keys(req.body)) {
+      const key = Object.keys(req.body)[i];
+      const orderFood = {
+        id: key,
+        quantity: req.body[key]
+      }
+      orderFoods.push(orderFood);
+    }
+    console.log(orderFoods);
+    db.orders
+      .current(customerId)
+      .then(order => {
+        return db.orders
+          .submit(order.id, orderFoods)
+          .then(data => {
+            console.log(data);
+            // sms.sendMessage(process.env.PHONE, 'Sending to Guest')
+            res.render('pages/confirmation', { data });
+          })
+      /* .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+      }); */
+    });
   });
-
-
-
 
   return router;
 };

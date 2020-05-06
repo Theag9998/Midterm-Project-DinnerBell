@@ -12,8 +12,8 @@ module.exports = (db) => {
         completed: data.filter(o => o.complete),
         pending: data.filter(o => !o.complete)
       }
-      console.log('COMPLETE:',orders.completed)
-      console.log('PENDING:', orders.pending)
+      // console.log('COMPLETE:',orders.completed)
+      // console.log('PENDING:', orders.pending)
       res.render("pages/my-orders", {orders})
     })
     .catch(err => {

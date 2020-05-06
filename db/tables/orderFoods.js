@@ -52,6 +52,40 @@ class OrderFoodsTable {
       });
   }  // If using catch(), add in route
 
+  /**
+   * Decrement an order_food record.
+   * @param {Object} order
+   * @param {Number} foodId
+   */
+  decrement(order, foodId) {
+    const queryString = `
+      UPDATE order_foods
+      SET quantity = order_foods.quantity - 1 WHERE order_foods.food_id = $1 AND order_foods.order_id = $2
+      RETURNING *;
+    `;
+    const values = [ foodId, order.id ];
+    return this.db
+      .query(queryString, values)
+      .then(items => {
+        order.items = items;
+        return order;
+      });
+  }  // If using catch(), add in route
+
+  /**
+   * Update food quantities for an order.
+   * @param {*} orderId
+   * @param {*} orderFoods
+   */
+  update(orderId, orderFoods) {
+    for (const food of orderFoods) {
+      const queryString = `UPDATE order_foods SET quantity = $1 WHERE order_id = $2 AND food_id = $3`;
+      const values = [ food.quantity, orderId, food.id ];
+      this.db.query(queryString, values);
+    }
+    return this.db.orders.get(orderId);
+  }  // If using catch(), add in route
+
 }
 
 module.exports = OrderFoodsTable;
