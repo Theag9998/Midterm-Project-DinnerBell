@@ -6,33 +6,27 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    const orderId = req.session.order_id;
+    const customerId = 1;
     db.orders
-      .get(orderId)
+      .current(customerId)
       .then(data => {
-        res.render("pages/checkout", { data });
+        console.log(data);
+        if (data) {
+          res.render("pages/checkout", { data });
+        } else {
+          res.redirect('/menu');
+        }
       });
-
   });
 
   router.post("/", (req, res) => {
     const customerId = 1;
-    const orderId = req.session.order_id || null;
     const foodId = req.body.foodId;
-
-    let promise;
-    if (!orderId) {
-      promise = db.orders
-        .add(customerId, foodId)
-    } else {
-      promise = db.orders
-        .update(orderId, foodId)
-    }
-
-    promise.then((data) => {
-      // console.log(data);
-      req.session.order_id = data.id;
-    })
+    db.orders
+      .addFood(customerId, foodId)
+      .then((data) => {
+        res.json(data);
+      });
     /* .catch(err => {
       res
         .status(500)
@@ -60,13 +54,18 @@ module.exports = (db) => {
           .then(data => {
             console.log(data);
             // sms.sendMessage(process.env.PHONE, 'Sending to Guest')
+<<<<<<< HEAD
             res.render('pages/confirmation', { data });
+=======
+            res.redirect('/confirmation');
+>>>>>>> master
           })
       /* .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+      }); */
+    });
   });
 
   return router;
