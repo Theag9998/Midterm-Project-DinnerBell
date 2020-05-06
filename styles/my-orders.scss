@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 15px;
+  // background-color: white;
 }
 
 .my-orders-div {
@@ -19,7 +20,9 @@ h3 {
 .my-orders {
   display: flex;
   justify-content: center;
-
+  font-family: unica one;
+  font-size: xx-large;
+  color: #f19b79;
 
 }
 
@@ -28,8 +31,20 @@ h3 {
   justify-content: center;
 }
 
-.my-table {
-  width: 70% !important;
+// .my-table {
+//   width: 70% !important;
+// }
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  padding: 10px 80px;
+}
+
+table.center {
+  width:70%;
+  margin-left:15%;
+  margin-right:15%;
 }
 
 .justify-right {
@@ -43,17 +58,15 @@ h3 {
   font-family: quicksand;
   border-radius: 10px;
   border: none;
-  color: white;
+  color: #246160;
 }
 
 .my-orders-button:hover {
   background-color: #246160;
-
-  color: #c3e2ce;
+  color: white;
 }
 
 .table-header {
   color: #246160;
-  font-family: unica one;
-  font-size: x-large;
+  font-size: large;
 }
