@@ -1,20 +1,40 @@
-const accountSid = 'AC374bb6cd27fbae9a937c7526526c433e';
-const authToken = '965169039fd80dbc5f4ef68bbaab44d5';
 
-const client = require ('twilio') (accountSid, authToken);
+require('dotenv').config();
 
-//SMS to Customer
-client.messages.create({
-  to: +7783192221,
-  from: '+15153163985',
-  body: 'Order received. Your order will be ready in 30 minutes. Please pick up at Papa Joe\'s Restaurant at 7:30pm.'
-})
-.then((message) => console.log(message.sid));
+const twilio = require('twilio');
 
-//SMS to Restaurant
-client.messages.create({
-  to: +17783192221,
-  from: '+15153163985',
-  body: 'New order received!'
-})
-.then((message) => console.log(message.sid));
+class TwilioAPI {
+  constructor() {
+    // Get credentials from env
+    this.accountSid = process.env.TWILIO_ACCOUNT_SID;
+    this.authToken = process.env.TWILIO_AUTH_TOKEN;
+
+    // Start client
+    this.client = twilio(this.accountSid, this.authToken);
+  }
+
+   /**
+   * Sends an SMS message to a provided phone number.
+   * @param {String} phoneNumber
+   * @param {String} smsMessage
+   */
+  async sendMessage(phoneNumber, smsMessage) {
+    this.client.messages
+      .create({
+        body: smsMessage,
+        from: process.env.TWILIO_PHONE_NUM,
+        to: phoneNumber //ASK SEAN
+      });
+  }
+
+}
+
+
+// Instantiate the SMS client
+const sms = new TwilioAPI();
+
+// Freeze the SMS client object
+Object.freeze(sms);
+
+// Export the SMS client
+module.exports = sms;

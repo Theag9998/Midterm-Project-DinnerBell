@@ -1,10 +1,18 @@
 const express = require('express');
 const router  = express.Router();
+const sms = require('../sendsms');
+
 
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.render("pages/checkout")
+    const orderId = req.session.order_id;
+    db.orders
+      .get(orderId)
+      .then(data => {
+        res.render("pages/checkout", { data });
+      });
+
   });
 
   router.post("/", (req, res) => {
@@ -14,13 +22,15 @@ module.exports = (db) => {
 
     let promise;
     if (!orderId) {
-      promise = db.orders.add(customerId, foodId)
+      promise = db.orders
+        .add(customerId, foodId)
     } else {
-      promise = db.orders.update(orderId, foodId)
+      promise = db.orders
+        .update(orderId, foodId)
     }
 
     promise.then((data) => {
-      console.log(data);
+      // console.log(data);
       req.session.order_id = data.id;
     })
     /* .catch(err => {
@@ -32,10 +42,12 @@ module.exports = (db) => {
 
   router.put("/", (req, res) => {
     customerId = 1;
-    const orderId = req.session.order_id;
+    const orderId = 1; //req.session.order_id;
     const foodId = req.body.foodId;
-    return db.orders.update(orderId, foodId)
+    return db.orders
+      .update(orderId, foodId)
       .then(data => {
+        sms.sendMessage(process.env.PHONE, 'Sending to Guest')
         res.redirect('/confirmation');
       })
       .catch(err => {
@@ -44,5 +56,9 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+
+
+
   return router;
 };

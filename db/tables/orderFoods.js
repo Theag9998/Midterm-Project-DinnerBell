@@ -7,7 +7,6 @@ class OrderFoodsTable {
 
   constructor(database) {
     this.db = database;
-    this.tableName = 'order_foods';
   }
 
   /**
@@ -16,9 +15,10 @@ class OrderFoodsTable {
    */
   getByOrder(order) {
     const queryString = `
-      SELECT *
-      FROM ${this.tableName}
-      WHERE ${this.tableName}.order_id = $1;
+      SELECT foods.id, foods.name, order_foods.quantity
+      FROM order_foods
+      JOIN foods ON food_id = foods.id
+      WHERE order_foods.order_id = $1;
     `;
     const values = [ order.id ];
     return this.db
@@ -36,11 +36,11 @@ class OrderFoodsTable {
    */
   increment(order, foodId) {
     const queryString = `
-      INSERT INTO ${this.tableName} (food_id, order_id)
+      INSERT INTO order_foods (food_id, order_id)
       VALUES ($1, $2)
       ON CONFLICT (food_id, order_id)
       DO UPDATE
-      SET quantity = ${this.tableName}.quantity + 1 WHERE ${this.tableName}.food_id = $1 AND ${this.tableName}.order_id = $2
+      SET quantity = order_foods.quantity + 1 WHERE order_foods.food_id = $1 AND order_foods.order_id = $2
       RETURNING *;
       `;
     const values = [ foodId, order.id ];
