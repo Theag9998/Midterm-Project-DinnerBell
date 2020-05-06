@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 15px;
+  // background-color: white;
 }
 
 .my-orders-div {
@@ -28,9 +29,9 @@ h3 {
   justify-content: center;
 }
 
-.my-table {
-  width: 70% !important;
-}
+// .my-table {
+//   width: 70% !important;
+// }
 
 .justify-right {
   display: flex;
@@ -43,13 +44,12 @@ h3 {
   font-family: quicksand;
   border-radius: 10px;
   border: none;
-  color: white;
+  color: #246160;
 }
 
 .my-orders-button:hover {
   background-color: #246160;
-
-  color: #c3e2ce;
+  color: white;
 }
 
 .table-header {
