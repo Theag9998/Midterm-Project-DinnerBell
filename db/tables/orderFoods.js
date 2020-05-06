@@ -78,18 +78,12 @@ class OrderFoodsTable {
    * @param {*} orderFoods
    */
   update(orderId, orderFoods) {
-    const queries = [];
-    let values = [];
-    let counter = 1;
     for (const food of orderFoods) {
-      queries.push(`UPDATE order_foods SET quantity = $${counter} WHERE order_id = $${counter + 1} AND food_id = $${counter + 2};`);
-      values = values.concat([ food.quantity, orderId, food.id]);
+      const queryString = `UPDATE order_foods SET quantity = $1 WHERE order_id = $2 AND food_id = $3`;
+      const values = [ food.quantity, orderId, food.id ];
+      this.db.query(queryString, values);
     }
-    return this.db
-      .query(queryString, values)
-      .then(() => {
-        return order;
-      });
+    return this.db.orders.get(orderId);
   }  // If using catch(), add in route
 
 }
