@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const cookieSession = require('cookie-session')
 
 const db = require('./db');
 
@@ -23,13 +22,6 @@ app.use(morgan('dev'));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieSession({
-  name: 'session',
-  keys: ["testkey1", "testkey2", "testkey3"],
-  maxAge: 60 * 60 * 1000,
-  sameSite: true,
-  domain: "localhost"
-}));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
