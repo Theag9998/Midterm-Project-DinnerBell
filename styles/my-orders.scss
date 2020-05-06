@@ -59,6 +59,11 @@ table.center {
   border-radius: 10px;
   border: none;
   color: #246160;
+
+}
+
+.my-orders-button:focus {
+  outline:0;
 }
 
 .my-orders-button:hover {
