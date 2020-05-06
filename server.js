@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const cookieSession = require('cookie-session')
 
 const db = require('./db');
 
@@ -23,13 +22,6 @@ app.use(morgan('dev'));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieSession({
-  name: 'session',
-  keys: ["testkey1", "testkey2", "testkey3"],
-  maxAge: 60 * 60 * 1000,
-  sameSite: true,
-  domain: "localhost"
-}));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -46,7 +38,7 @@ const confirmationRoutes = require("./routes/confirmation")
 const menuRoutes = require("./routes/menu")
 const myOrdersRoutes = require ("./routes/my-orders");
 const checkoutRoutes = require ("./routes/checkout");
-
+const restaurantRoutes = require ("./routes/restaurant");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -56,6 +48,7 @@ app.use("/confirmation", confirmationRoutes(db));
 app.use("/menu", menuRoutes(db));
 app.use("/my-orders", myOrdersRoutes(db));
 app.use("/checkout", checkoutRoutes(db));
+app.use("/restaurant", restaurantRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
