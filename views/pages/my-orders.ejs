@@ -2,28 +2,23 @@
 <%- include('../partials/header') %>
 
 
-
-
-
-
 <main >
   <body></body>
-    <div>
-    </div>
-    <h3>My Pending Orders</h3>
+    <div></div>
+    <h3 style="text-align: center;">My Pending Orders</h3>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Order Date</th>
-          <th scope="col">View Order</th>
+          <th class="table-header" scope="col">Order Date</th>
+          <th class="table-header" scope="col">View Order</th>
         </tr>
       </thead>
       <tbody>
         </tr>
         <% for (let order of orders.pending) { %>
           <tr>
-            <td><%= order.order_date_time %></td>
-            <td><button type="button" class="btn btn-primary">View Order</button></td>
+            <td><%= new Date(order.order_date_time) %></td>
+            <td><button type="button" class="my-orders-button">View</button></td>
           </tr>
         <% }%>
       </tbody>
@@ -33,20 +28,21 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Order Date</th>
-          <th scope="col">View Order</th>
+          <th class="table-header" scope="col">Order Date</th>
+          <th class="table-header" scope="col">View Order</th>
         </tr>
       </thead>
       <tbody>
         <% for(let order of orders.completed) { %>
           <tr>
           <td><%= order.order_date_time %></td>
-          <td><button type="button" class="btn btn-primary">View Order</button></td>
+          <td><button type="button" class="my-orders-button">View</button></td>
           </tr>
         <% } %>
       </tbody>
     </table>
-    <%- include('../partials/header') %>
+    <div></div>
+    <%- include('../partials/footer') %>
   </body>
 </main>
 
