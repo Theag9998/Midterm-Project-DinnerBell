@@ -2,22 +2,15 @@
   padding-top: 3rem;
   padding-bottom: 3rem;
   margin-bottom: 0;
-  background-color: #fff;
+  background-color: red;
 }
 
-
-.jumbotron p:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron h1 {
-  font-weight: 300;
-}
 
 .jumbotron .container {
   max-width: 40rem;
 }
-.jumbotron .text-center {
+.jumbotron {
+   background-image: url("https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   display: flex;
   justify-content: center;
 }
