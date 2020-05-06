@@ -21,19 +21,3 @@ module.exports = (db) => {
   });
   return router;
 };
-// module.exports = (db) => {
-
-//   router.get("/", (req, res) => {
-//       db.foods.all().then((data) => {
-//         // console.log(data)
-//         res.render("pages/menu", { data });
-//       })
-//       .catch(err => {
-//         res
-//           .status(500)
-//           .json({ error: err.message });
-//       });
-//     })
-
-//   return router;
-// };

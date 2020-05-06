@@ -10,6 +10,14 @@ class OrdersTable {
     this.tableName = 'orders';
   }
 
+  all(customerId = null) {
+    return this.db.query(`
+    SELECT * FROM orders
+    WHERE customer_id = $1
+    ORDER BY order_date_time DESC
+    `, [1]);
+  };
+
   /**
    * Add an order record.
    * @param {Number} customerId - Unique id from a user's cookie session.
@@ -24,9 +32,9 @@ class OrdersTable {
     const values = [ customerId ];
     return this.db
       .query(queryString, values)
-      .then(res => {
-        const orderId = res.rows[0];
-        return this.db.orderFoods.increment(orderId, foodId);
+      .then(data => {
+        const order = data[0];
+        return this.db.orderFoods.increment(order, foodId);
       });  // If using catch(), add in route
   }
 
@@ -41,7 +49,11 @@ class OrdersTable {
       WHERE id = $1;
     `;
     return this.db
-      .query(queryString, [id]);
+      .query(queryString, [id])
+      .then(data => {
+        const order = data[0];
+        return this.db.orderFoods.getByOrder(order);
+      });
   }
 
   /**
@@ -54,14 +66,34 @@ class OrdersTable {
       UPDATE ${this.tableName}
       SET order_date_time = NOW()
       WHERE orders.id = $1
-      RETURNING id;
+      RETURNING *;
     `;
     const values = [ orderId ];
     return this.db
       .query(queryString, values)
-      .then(res => {
-        const orderId = res.rows[0];
-        return this.db.orderFoods.increment(orderId, foodId);
+      .then(data => {
+        const order = data[0];
+        return this.db.orderFoods.increment(order, foodId);
+      });  // If using catch(), add in route
+  }
+
+  /**
+   * Update the pick up time for an order.
+   * @param {Number} orderId
+   * @param {Number} minutes
+   */
+  confirm(orderId, minutes) {
+    const queryString = `
+      UPDATE ${this.tableName}
+      SET pick_up_date_time = NOW() + $1
+      WHERE orders.id = $2
+      RETURNING *;
+    `;
+    const values = [ orderId, minutes * 60 * 1000 ];
+    return this.db
+      .query(queryString, values)
+      .then(data => {
+        return data[0];
       });  // If using catch(), add in route
   }
 
