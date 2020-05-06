@@ -4,31 +4,37 @@
 
   <section class="jumbotron text-center">
     <div class="container">
-      <h1>Papa Joe's Pizza</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-      <a class="btn btn-primary my-2" href="#">View Cart</a>
+      <h1 class="restaurant-name">Papa Joe's Pizza</h1>
+      <p class="load-text">Hot fresh pizza at the ring of a bell!</p>
+      <div class='button-content'>
+        <button class="cart-btn">View Cart</button>
+      </div>
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+  <div class="album">
+    <div class="food-container">
       <% for (let item of data) { %>
 
         <div class="row">
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <div><%= item.category %></div>
-              <div><%= item.name %></div>
-              <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<%= item.picture %>">
+            <div class="card-container">
+              <div class="card-top">
+                <div class="category"><%= item.category %>:</div>
+                <div class="food-name"><%= item.name %></div>
+              </div>
+              <img class="food-picture" width="100%" src="<%= item.picture %>">
               <div class="card-body">
                 <p class="card-text"><%= item.description %></p>
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="card-bottom">
                   <div class="btn-group">
                     <button type="button" class="add-to-cart" value=<%=item.id%>>Add to cart</button>
                     <button type="button" class="remove-from-cart" value=<%=item.id%>>Remove from cart</button>
                   </div>
-                  <div><%= item.size %></div>
-                  <small class="text-muted"> $<%= item.cost %>.00</small>
+                  <div class="food-details">
+                    <div><%= item.size %></div>
+                    <small class="price-muted"> $<%= item.cost %>.00</small>
+                  </div>
                 </div>
               </div>
             </div>

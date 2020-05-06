@@ -4,12 +4,7 @@
   margin-bottom: 0;
   background-color: #fff;
 }
-@media (min-width: 768px) {
-  .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-}
+
 
 .jumbotron p:last-child {
   margin-bottom: 0;
@@ -21,4 +16,20 @@
 
 .jumbotron .container {
   max-width: 40rem;
+}
+.jumbotron .text-center {
+  display: flex;
+  justify-content: center;
+}
+.album {
+  display: flex;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  justify-content: center;
+}
+.col-md-4 {
+  flex: 0 0 60%;
+  max-width: 95%;
 }
