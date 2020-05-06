@@ -1,14 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/styles/review_order.css" type="text/css" />
-</head>
-<body>
-  <h1>Checkout</h1>
-  <%- include('../partials/review_order') -%>
-</body>
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
 
-</html>
+<main class="checkout-main">
+<body>
+  <form id="checkout-form" action="/checkout?_method=PUT" method="POST">
+    <h3 id="checkout-title">Checkout</h3>
+      <p><strong>Please review your order:</strong></p>
+        <table>
+          <tbody>
+            <!-- <input type='hidden' name='orderId' placeholder=<%= data.id %>></input> -->
+            <% let counter = 1 %>
+            <% for (const food of data.items) { %>
+              <tr class="form-group">
+                <td><label for=<%= [ food.name, counter ].join('-'); %>><%= food.name %></label></td>
+                <td><input id=<%= [ food.name, counter ].join('-'); %> name=<%= food.id %> type="number" min="0" value=<%= food.quantity %>></input></td>
+              </tr>
+              <% counter++ %>
+            <% } %>
+          </tbody>
+        </table>
+      <button id="confirm-order" type='submit'>Submit Order</button>
+    </form>
+
+</body>
+</main>
+
+<%- include('../partials/footer') %>

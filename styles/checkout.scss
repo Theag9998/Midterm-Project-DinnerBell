@@ -1,0 +1,46 @@
+
+.checkout-main {
+  background-color: white;
+  width: 100%;
+  padding-bottom: 50px;
+  font-family: quicksand;
+}
+
+#checkout-title {
+  color: #246160;
+  font-family: unica one;
+  font-size: 30px;
+}
+
+#checkout-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  width: 50%;
+  border-style: none;
+  text-align: center;
+}
+
+tr.form-group {
+  margin: 50px;
+}
+
+button#confirm-order {
+  background-color: #c3e2ce;
+  padding: 10px 20px;
+  margin: 10px auto;
+  font-size: 18px;
+  font-family: quicksand;
+  border-radius: 10px;
+  border: none;
+  color: #246160;
+}
+
+button#confirm-order:hover {
+  background-color: #246160;
+  color: #c3e2ce;
+}
