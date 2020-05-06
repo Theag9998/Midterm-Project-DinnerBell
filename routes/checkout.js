@@ -54,11 +54,7 @@ module.exports = (db) => {
           .then(data => {
             console.log(data);
             // sms.sendMessage(process.env.PHONE, 'Sending to Guest')
-<<<<<<< HEAD
             res.render('pages/confirmation', { data });
-=======
-            res.redirect('/confirmation');
->>>>>>> master
           })
       /* .catch(err => {
         res
