@@ -2,17 +2,62 @@
   padding-top: 3rem;
   padding-bottom: 3rem;
   margin-bottom: 0;
-  background-color: red;
+  background-image: url("https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
 }
 
 
 .jumbotron .container {
   max-width: 40rem;
+  color: #246160;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  font-family: Unica one;
 }
-.jumbotron {
-   background-image: url("https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+.restaurant-name {
+font-size: 60px;
+display: flex;
+justify-content: center;
+margin: 15px;
+
+}
+.load-text {
   display: flex;
   justify-content: center;
+  font-size: 25px;
+  margin: 15px;
+}
+.button-content {
+display: flex;
+justify-content: center;
+}
+
+.cart-btn {
+  background-color: #c3e2ce;
+  border-radius: 5px;
+}
+.food-container {
+  border: solid 10px #246160;
+  margin: 3rem;
+  background-image: url("../public/images/brick-wall.png");
+}
+.card-container {
+  border: solid 5px #246160;
+  margin-top: 25px;
+  font-family: Unica one;
+}
+.card-top {
+  display: flex;
+  justify-content: left;
+}
+.category {
+  padding: 7px;
+}
+.food-name {
+  padding: 7px;
 }
 .album {
   display: flex;
@@ -23,6 +68,6 @@
   justify-content: center;
 }
 .col-md-4 {
-  flex: 0 0 60%;
+  flex: 0 0 70%;
   max-width: 95%;
 }
