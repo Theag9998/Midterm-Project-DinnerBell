@@ -52,7 +52,7 @@ class OrdersTable {
    * @param {Number} customerId
    * @param {Number} foodId
    */
-  async addFood(customerId, foodId) {
+  addFood(customerId, foodId) {
     const queryString = `
       SELECT id
       FROM orders
@@ -106,15 +106,14 @@ class OrdersTable {
     const queryString = `
       UPDATE orders
       SET order_date_time = NOW()
-      WHERE orders.id = $1
+      WHERE id = $1
       RETURNING *;
     `;
     const values = [ orderId ];
     return this.db
       .query(queryString, values)
-      .then(data => {
-        const order = data[0];
-        return this.db.orderFoods.update(order, orderFoods);
+      .then(() => {
+        return this.db.orderFoods.update(orderId, orderFoods);
       });
   }
 
