@@ -18,5 +18,12 @@ module.exports = (db) => {
         .json({ error: err.message });
     });
   });
+
+  //Route to update time 
+  router.post('/updateTime', (req, res, next) => {
+    db.orders.confirm(orderId, minutes)
+
+    })
+
   return router;
 };
