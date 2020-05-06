@@ -26,6 +26,8 @@ nav {
   align-items: center;
   width: 100%;
   height: 100px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .logo {
@@ -55,7 +57,7 @@ nav {
 .page-links {
   display: flex;
   justify-content: space-evenly;
-  width: 1000px;
+  // width: 1000px;
 }
 
 .nav-links {
@@ -79,8 +81,6 @@ nav {
   color: #246160;
   width: 250px;
 }
-
-
 
 .fas {
   width: fit-content;
