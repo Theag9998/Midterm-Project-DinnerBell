@@ -9,7 +9,8 @@ module.exports = (db) => {
   router.get("/:id", (req, res, next) => {
     db.query(`SELECT * FROM orders WHERE id = $1;`, [req.params.id])
       .then(data => {
-        res.json({ pickUpTime: data[0].pick_up_date_time });
+        const pickUpTime = data[0].pick_up_date_time;
+        res.json({ pickUpTime });
       })
       .catch(err => {
         res

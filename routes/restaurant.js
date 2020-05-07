@@ -22,11 +22,10 @@ module.exports = (db) => {
   //Route to update time
   router.post('/:id/confirm', (req, res, next) => {
     const orderId = req.params.id;
-    const minute = req.body.estimatedTime;
-    console.log(orderId, minute);
-    db.orders.confirm(orderId, minute);
+    const minutes = req.body.estimatedTime;
+    db.orders.confirm(orderId, minutes);
 
-    const estimatedTime = new Date(new Date().getTime() + minute*60*1000)
+    const estimatedTime = new Date(new Date().getTime() + minutes*60*1000)
     // sms.sendMessage(process.env.PHONE, `${estimatedTime.getHours()}:${estimatedTime.getMinutes()}`)
     })
 

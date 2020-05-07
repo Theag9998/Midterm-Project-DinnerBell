@@ -149,11 +149,13 @@ class OrdersTable {
   confirm(orderId, minutes) {
     const queryString = `
       UPDATE orders
-      SET pick_up_date_time = NOW() + $1
+      SET pick_up_date_time = to_timestamp($1)
       WHERE orders.id = $2;
     `;
-    const estimatedTime = parseInt(minutes) * 60 * 1000;
-    const values = [ estimatedTime, orderId ];
+    const estimatedTime = parseInt(minutes) * 60;
+    const dateTimeNow = Date.now() / 1000;
+    const pickUpTime = dateTimeNow + estimatedTime;
+    const values = [ pickUpTime, orderId ];
     return this.db
       .query(queryString, values);
       // If using catch(), add in route
