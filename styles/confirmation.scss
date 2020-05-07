@@ -14,7 +14,7 @@
   margin-top: 35px;
 }
 
-pickup-details, .confirmation-title {
+.pickup-details, .confirmation-title {
   color: #f19b79;
   font-family: unica one;
   font-size: 30px;
@@ -26,11 +26,9 @@ iframe {
   border: solid 7px #246160;
 }
 .confirmation-num {
-  display: flex;
   justify-content: center;
 }
 .pickup-time {
-  display: flex;
   justify-content: center;
 }
 

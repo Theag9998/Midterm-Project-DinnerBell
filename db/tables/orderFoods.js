@@ -29,6 +29,16 @@ class OrderFoodsTable {
       });
   }
 
+  all(customerId = null) {
+    return this.db
+    .query(`
+    SELECT order_foods.*, foods.*
+    FROM order_foods
+    JOIN foods ON foods.id = order_foods.order_id
+    WHERE order_foods.order_id = $1
+    `, [1]);
+  }
+
   /**
    * Increment an order_food record.
    * @param {Object} order
