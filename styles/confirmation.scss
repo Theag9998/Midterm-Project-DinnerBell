@@ -4,10 +4,35 @@
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
+  font-family: quicksand;
 }
-
-#confirmation-title {
+.article{
+  font-weight: bolder;
+}
+.confirmation-title {
   color: #f19b79;
   font-family: unica one;
   font-size: 30px;
+}
+.pickup-location {
+  margin-top: 35px;
+}
+.pickup-details {
+  color: #f19b79;
+  font-family: unica one;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+iframe {
+  margin-top: 20px;
+  border: solid 7px #246160;
+}
+.confirmation-num {
+  display: flex;
+  justify-content: center;
+}
+.pickup-time {
+  display: flex;
+  justify-content: center;
 }
