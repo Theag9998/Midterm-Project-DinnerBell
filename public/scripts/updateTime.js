@@ -3,6 +3,6 @@ $(document).ready(function() {
    const timeBox =  $('.time-box').val();
    const orderId =  $('.orderId').val();
    const reqData = {'estimatedTime': timeBox, 'orderId': orderId}
-   $.post('/restaurant/updateTime',reqData);
+   $.post(`/restaurant/${orderId}/confirm`, reqData);
   })
 })
