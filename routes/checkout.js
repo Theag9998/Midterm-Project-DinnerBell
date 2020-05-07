@@ -45,7 +45,6 @@ module.exports = (db) => {
       }
       orderFoods.push(orderFood);
     }
-    console.log(orderFoods);
     db.orders
       .current(customerId)
       .then(order => {
