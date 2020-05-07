@@ -33,11 +33,17 @@ margin: 15px;
 .button-content {
 display: flex;
 justify-content: center;
+font-family: quicksand;
 }
-
-.cart-btn {
+a.cart-btn {
   background-color: #c3e2ce;
   border-radius: 5px;
+  text-decoration: none;
+}
+a.cart-btn:hover {
+  background-color: #246160;
+  font-family: quicksand;
+  color: white;
 }
 .food-container {
   display: flex;
@@ -53,14 +59,15 @@ justify-content: center;
   height: 425px;
   border: solid 5px #246160;
   margin-top: 25px;
-  font-family: Unica one;
+  font-family: quicksand;
   background-color: white;
       margin: 1.5rem;
 }
-// .card-top {
-//   display: flex;
-//   justify-content: left;
-// }
+.card-top {
+  background-color: #246160;
+  color: white;
+  padding-left: 5px;
+}
 // .category {
 //   padding: 7px;
 // }
@@ -93,15 +100,34 @@ justify-content: center;
 }
 .card-text {
   font-size: 15px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 .add-to-cart {
   background-color: #c3e2ce;
   border-radius: 5px;
 }
+.add-to-cart:hover {
+  background-color: #246160;
+  font-family: quicksand;
+  color: white;
+}
+.add-to-cart:focus {
+  outline:0;
+  }
 .remove-from-cart {
   background-color: #c3e2ce;
   border-radius: 5px;
+  margin-top: 3px;
 }
+.remove-from-cart:hover {
+  background-color: #246160;
+  font-family: quicksand;
+  color: white;
+}
+.remove-from-cart:focus {
+  outline:0;
+  }
 
 .food-picture {
   width: 240px;
