@@ -5,7 +5,7 @@ const setIntervalLoop = () => {
     const orderId = $('#orderId').text();
     $.get(`/confirmation/${orderId}`)
       .then(data => {
-        if (data) {
+        if (data.pickUpTime) {
           const pickUpTime = new Date(data.pickUpTime);
           $('#pickUpTime').text(`${pickUpTime.getHours()}:${pickUpTime.getMinutes()}`);
           clearInterval(intervalId);
