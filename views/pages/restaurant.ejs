@@ -19,11 +19,11 @@
 
           <form action="/updateTime" method="POST"></form>
 
-          <tr>
+          <tr class="move-tr">
             <td><%= new Date(order.order_date_time).toDateString() %></td>
             <td class="td-flex">
                 <input type="hidden" name="orderId" class="orderId" value=<%=order.id%>>
-                <input name="estimatedTime" class="time-box" type="text">
+                <input name="estimatedTime" class="time-box" type="text" required>
                 <button type="button" class="my-orders-button  justify-right">Confirm</button>
             </td>
           </tr>
@@ -39,16 +39,12 @@
       <thead>
         <tr>
           <th class="table-header" scope="col">Order Date</th>
-          <th class="table-header  justify-right" scope="col">View Order</th>
+          <th class="table-header  justify-right" scope="col">Confirmed</th>
         </tr>
       </thead>
-      <tbody>
-        <% for(let order of orders.completed) { %>
-          <tr>
-          <td><%= new Date(order.order_date_time).toDateString() %></td>
-          <td><button type="button" class="my-orders-button  justify-right">View</button></td>
+      <tbody class="move-to-tbody">
+          <tr >
           </tr>
-        <% } %>
       </tbody>
     </table>
   </div>
