@@ -188,3 +188,12 @@ class OrdersTable {
 }
 
 module.exports = OrdersTable;
+
+
+
+
+SELECT orders.id, orders.order_date_time, foods.*
+FROM orders
+JOIN order_foods ON orders.id = order_foods.order_id
+JOIN foods ON foods.id = order_foods.food_id
+WHERE orders.id = 1;
