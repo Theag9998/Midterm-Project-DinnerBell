@@ -37,6 +37,8 @@ h3 {
 
 th, td {
   border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
   text-align: center;
   padding: 10px 80px;
 }
@@ -59,7 +61,7 @@ table.center {
   border-radius: 10px;
   border: none;
   color: #246160;
-
+  // transition: all 0.2s ease-in-out;
 }
 
 .my-orders-button:focus {
@@ -74,4 +76,8 @@ table.center {
 .table-header {
   color: #246160;
   font-size: large;
+}
+
+.food-info {
+  display: none;
 }
