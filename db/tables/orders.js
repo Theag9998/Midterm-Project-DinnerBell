@@ -23,7 +23,6 @@ class OrdersTable {
   ORDER BY orders.order_date_time DESC
   `)
     .then((data) => {
-      console.log("***DATA", data)
 
       const processedOrders = data.map((order) => {
         const {
@@ -44,15 +43,8 @@ class OrdersTable {
           food
         }
       })
-console.log('processedOrders', processedOrders)
+
       const groupedOrders = [];
-      // [
-      //   {
-      //     id: 2,
-      //     ...
-      //     foods: [{ id: 10 }]
-      //   }
-      // ]
       processedOrders.forEach((order) => {
         // check if order is already in groupedOrder
         // find this order in grouped orders
@@ -81,15 +73,7 @@ console.log('processedOrders', processedOrders)
         }
       })
 
-      console.log("***GROUPED", JSON.stringify(groupedOrders, null, 2))
-      // let orders = [];
-      // for (const order of data) {
-      //   // console.log("***ORDER OF DATA", order)
-      //   let pendingOrder = this.db.orderFoods.getByOrder(order);
-      //   let receivedOrder = pendingOrder;
-      //   orders.push(receivedOrder);
-      // }
-      // console.log(data)
+
       return groupedOrders;
     })
   //   // WHERE orders.id = $1

@@ -37,8 +37,6 @@ h3 {
 
 th, td {
   border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-left: 1px solid #ddd;
   text-align: center;
   padding: 10px 80px;
 }
@@ -82,9 +80,9 @@ table.center {
   display: flex;
 }
 
-// .order-row {
-//   display: none;
-// }
+.order-row {
+  font-size: larger;
+}
 
 .food-row {
   display: none;
@@ -92,11 +90,21 @@ table.center {
   transition: all ease 300ms;
 }
 
-// .food-div {
-//   display: none;
-//   height: 50px;
-// }
+.food-name {
+  font-weight: 700;
+}
 
-// .food-info {
-//   height: 50px;
-// }
+.food-deets {
+  margin: 5px;
+}
+
+
+.food-info {
+  text-align: left;
+  font-size: small;
+  border-bottom: none;
+
+}
+.food-right{
+  text-align: right;
+}
