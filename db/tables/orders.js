@@ -66,6 +66,7 @@ class OrdersTable {
     return this.db
       .query(queryString, [id])
       .then(data => {
+        console.log(data);
         const order = data[0];
         return this.db.orderFoods.getByOrder(order);
       });
@@ -130,8 +131,7 @@ class OrdersTable {
     const queryString = `
       UPDATE orders
       SET order_date_time = NOW()
-      WHERE id = $1
-      RETURNING *;
+      WHERE id = $1;
     `;
     const values = [ orderId ];
     return this.db
@@ -150,15 +150,13 @@ class OrdersTable {
     const queryString = `
       UPDATE orders
       SET pick_up_date_time = NOW() + $1
-      WHERE orders.id = $2
-      RETURNING *;
+      WHERE orders.id = $2;
     `;
-    const values = [ orderId, minutes * 60 * 1000 ];
+    const estimatedTime = parseInt(minutes) * 60 * 1000;
+    const values = [ estimatedTime, orderId ];
     return this.db
-      .query(queryString, values)
-      .then(data => {
-        return data[0];
-      });  // If using catch(), add in route
+      .query(queryString, values);
+      // If using catch(), add in route
   }
 
   /**
