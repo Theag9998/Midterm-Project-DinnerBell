@@ -16,14 +16,17 @@
       <tbody>
         </tr>
         <% for (let order of orders.pending) { %>
+          <form action="/updateTime" method="POST"></form>gi
           <tr>
             <td><%= new Date(order.order_date_time).toDateString() %></td>
             <td class="td-flex">
-              <input class="time-box" type="text">
-              <button type="button" class="my-orders-button  justify-right">Confirm</button>
+                <input type="hidden" name="orderId" value=<%=order.id%>>
+                <input name="estimatedTime" class="time-box" type="text">
+                <button type="button" class="my-orders-button  justify-right">Confirm</button>
+                </form>
             </td>
-            
           </tr>
+        </form>
         <% }%>
       </tbody>
     </table>

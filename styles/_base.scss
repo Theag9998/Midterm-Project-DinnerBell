@@ -1,0 +1,31 @@
+// styles/_base.scss
+
+body {
+
+  background-color: white;
+
+  h1 {
+    color: #246160;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    font-family: Unica one;
+    font-size: 70px;
+    margin-bottom: inherit;
+  }
+}
+
+button {
+  background-color: #c3e2ce;
+  padding: 10px 20px;
+  margin: 10px auto;
+  font-size: 18px;
+  font-family: quicksand;
+  border-radius: 10px;
+  border: none;
+  color: #246160;
+}
+
+button:hover {
+  background-color: #246160;
+  color: #c3e2ce;
+}
