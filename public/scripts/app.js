@@ -12,7 +12,16 @@
 $(document).ready(function() {
   $('.add-to-cart').click((event) => {
     const reqData = { foodId: event.target.value };
-    $.post('/checkout', reqData);
+    $.post('/checkout', reqData, (res) => {
+      console.log(res);
+    });
+  });
+
+  $('.remove-from-cart').click((event) => {
+    const reqData = { foodId: event.target.value };
+    $.post('/checkout?_method=DELETE', reqData, (res) => {
+      console.log(res);
+    });
   });
 });
 
