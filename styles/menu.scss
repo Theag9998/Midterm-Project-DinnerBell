@@ -63,19 +63,17 @@ a.cart-btn:hover {
   margin-top: 25px;
   font-family: quicksand;
   background-color: white;
-      margin: 1.5rem;
+  margin: 1.5rem;
+}
+.card-container:hover {
+  box-shadow: 5px 5px 5px grey;
 }
 .card-top {
   background-color: #246160;
   color: white;
   padding-left: 5px;
 }
-// .category {
-//   padding: 7px;
-// }
-// .food-name {
-//   padding: 7px;
-// }
+
 .album {
   display: flex;
   justify-content: center;
