@@ -20,9 +20,12 @@ module.exports = (db) => {
   });
 
   //Route to update time 
-  router.post('/updateTime', (req, res, next) => {
-    db.orders.confirm(req.body.orderId, req.body.estimatedTime);
-    const estimatedTime = new Date(new Date().getTime() + req.body.estimatedTime*60*1000)
+  router.post('/:id/confirm', (req, res, next) => {
+    const orderId = req.params.id;
+    const minute = req.body.estimatedTime 
+    db.orders.confirm(orderId, minute);
+
+    const estimatedTime = new Date(new Date().getTime() + minute*60*1000)
     // sms.sendMessage(process.env.PHONE, `${estimatedTime.getHours()}:${estimatedTime.getMinutes()}`)
     })
     
