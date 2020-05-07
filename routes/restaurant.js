@@ -25,7 +25,7 @@ module.exports = (db) => {
     const minute = req.body.estimatedTime;
     db.orders.confirm(orderId, minute);
 
-    // sms.sendMessage(process.env.PHONE, `${minute}`)
+    sms.sendMessage(process.env.PHONE, `Thanks for your order! \nYour order will be ready in ${minute} minute(s).`)
   });
 
   return router;
