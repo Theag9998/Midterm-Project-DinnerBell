@@ -15,6 +15,8 @@ $(document).ready(function() {
     $.post('/checkout', reqData);
   });
 });
+
+
 //In-Page JQuery to assign food_id to hidden form field: $('add-to-cart').click( (event)=> {
   // $('#something').val(menu_item_id);
   // });
