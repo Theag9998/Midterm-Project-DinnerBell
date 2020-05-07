@@ -188,4 +188,7 @@ class OrdersTable {
 }
 
 module.exports = OrdersTable;
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa732d29c00e2c0b061eb6d8d2777eb8852fdadd
