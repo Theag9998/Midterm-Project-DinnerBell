@@ -7,9 +7,10 @@ const setIntervalLoop = () => {
       .then(data => {
         if (data.pickUpTime) {
           const pickUpTime = new Date(data.pickUpTime);
+          const minutes = Math.round((pickUpTime.getTime() - Date.now()) / 1000 / 60);
           $('#pending-block').hide();
           $('#confirmed-block').show();
-          $('#pickUpTime').text(`${pickUpTime.getHours()}:${pickUpTime.getMinutes()}`);
+          $('#pickUpTime').text(`${minutes}`);
           $('#pending-bell').hide();
           $('#confirmed-bell').show();
 
