@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-// const sms = require('../sendsms');
+const sms = require('../sendsms');
 
 module.exports = (db) => {
   router.get('/', (req, res, next) => {
@@ -26,7 +26,7 @@ module.exports = (db) => {
     db.orders.confirm(orderId, minute);
 
     const estimatedTime = new Date(new Date().getTime() + minute*60*1000)
-    // sms.sendMessage(process.env.PHONE, `${estimatedTime.getHours()}:${estimatedTime.getMinutes()}`)
+    sms.sendMessage(process.env.PHONE, `${estimatedTime.getHours()}:${estimatedTime.getMinutes()}`)
     })
 
   return router;
