@@ -26,6 +26,7 @@ module.exports = (db) => {
     db.orders.confirm(orderId, minute);
 
     // sms.sendMessage(process.env.PHONE, `${minute}`)
+  });
 
   return router;
 };
