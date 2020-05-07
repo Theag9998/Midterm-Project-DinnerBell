@@ -9,6 +9,22 @@ class OrdersTable {
     this.db = database;
   }
 
+  //   all(customerId = null) {
+  //   return this.db.query(`
+  //   SELECT orders.*, foods.*,
+  //   (CASE
+  //     WHEN order_date_time IS NULL AND pick_up_time IS NULL THEN true
+  //     WHEN order_date_time IS NOT NULL OR pick_up_time IS NOT NULL THEN false
+  //   END) as complete
+  //   FROM orders
+  //   JOIN order_foods ON orders.id = order_foods.order_id
+  //   JOIN foods ON foods.id = order_foods.food_id
+  //   WHERE orders.id = $1
+  //   ORDER BY orders.order_date_time DESC
+  //   `, [1]);
+  // };
+
+//ORIGINAL TO REVERT TO IF NEEDED
   all(customerId = null) {
     return this.db.query(`
     SELECT * FROM orders
@@ -186,3 +202,5 @@ class OrdersTable {
 }
 
 module.exports = OrdersTable;
+
+
