@@ -3,26 +3,22 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res, next) => {
-
-
-
-    return db.orders.all(1)
+   return db.orders.all(1)
     .then(data => {
       let orders = {
         completed: data.filter(o => o.complete),
         pending: data.filter(o => !o.complete)
       }
-
-      console.log('**ORDERS:', orders)
+      console.log('**ORDERS:', orders.completed)
       res.render("pages/my-orders", {orders})
     })
     .catch(err => {
       res
         .status(500)
         .json({ error: err.message });
-    });
-
+    })
   })
+
 
 
 

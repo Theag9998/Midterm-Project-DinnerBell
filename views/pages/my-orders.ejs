@@ -18,16 +18,24 @@
       <tbody>
         </tr>
         <% for (let order of orders.pending) { %>
+
           <tr>
-            <td><%= new Date(order.order_date_time).toDateString() %></td>
+            <td><%= new Date(order.order_date_time).toDateString(); %></td>
             <td><button type="button" class="my-orders-button  justify-right">View</button></td>
+
           </tr>
-          <div class="food-info">
-            <tr class="food-info">
-              <td class="food-info">test</td>
-              <td class="food-info">test</td>
-            </tr>
-          </div>
+
+            <section class="food-section">
+              <% for (let food of order.foods) {%>
+              <tr class="food-row">
+                <!-- <div class="food-div" > -->
+                  <td class="food-info"><%= food.name %></td>
+                  <td class="food-info"><%= food.cost %></td>
+                <!-- </div> -->
+              </tr>
+              <% }%>
+            </section>
+
         <% }%>
       </tbody>
     </table>
@@ -42,14 +50,24 @@
           <th class="table-header  justify-right" scope="col">View Order</th>
         </tr>
       </thead>
-      <tbody>
+
         <% for(let order of orders.completed) { %>
+        <tbody class="order-row">
           <tr>
-          <td><%= new Date(order.order_date_time).toDateString() %></td>
-          <td><button type="button" class="my-orders-button  justify-right">View</button></td>
+            <td><%= new Date(order.order_date_time).toDateString() %></td>
+            <td><button type="button" class="my-orders-button  justify-right">View</button></td>
           </tr>
+
+          <% for (let food of order.foods) {%>
+            <tr class="food-row">
+              <!-- <div class="food-div" > -->
+                <td class="food-info"><%= food.name %></td>
+                <td class="food-info"><%= food.cost %></td>
+              <!-- </div> -->
+            </tr>
+            <% }%>
+        </tbody>
         <% } %>
-      </tbody>
     </table>
   </div>
   <div class="my-orders-div"></div>

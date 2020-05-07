@@ -78,6 +78,25 @@ table.center {
   font-size: large;
 }
 
-.food-info {
-  display: none;
+.food-section {
+  display: flex;
 }
+
+// .order-row {
+//   display: none;
+// }
+
+.food-row {
+  display: none;
+  height: 0px;
+  transition: all ease 300ms;
+}
+
+// .food-div {
+//   display: none;
+//   height: 50px;
+// }
+
+// .food-info {
+//   height: 50px;
+// }
