@@ -1,10 +1,17 @@
-const checkConfirmation = () => {
-  $.get('/confirmation/1')
-  .then(data => {
-    const pickUpTime = new Date(data.orders.pick_up_date_time);
-    console.log('data :>> ', data);
-    $('#pickUpTime').text(`${pickUpTime.getHours()}:${pickUpTime.getMinutes()}pm`);
-  }) 
-} 
+// public/scripts/checkConfirmation.js
 
-$(document).ready(checkConfirmation());
+const setIntervalLoop = () => {
+  const intervalId = setInterval(()=> {
+    const orderId = $('#orderId').text();
+    $.get(`/confirmation/${orderId}`)
+      .then(data => {
+        if (data) {
+          const pickUpTime = new Date(data.pick_up_date_time);
+          $('#pickUpTime').text(`${pickUpTime.getHours()}:${pickUpTime.getMinutes()}`);
+          clearInterval(intervalId);
+        }
+      });
+  }, 5000);
+}
+
+$(document).ready(setIntervalLoop());
