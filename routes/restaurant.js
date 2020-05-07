@@ -23,6 +23,7 @@ module.exports = (db) => {
   router.post('/:id/confirm', (req, res, next) => {
     const orderId = req.params.id;
     const minute = req.body.estimatedTime;
+    console.log(orderId, minute);
     db.orders.confirm(orderId, minute);
 
     const estimatedTime = new Date(new Date().getTime() + minute*60*1000)

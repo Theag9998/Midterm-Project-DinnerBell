@@ -7,7 +7,12 @@ const setIntervalLoop = () => {
       .then(data => {
         if (data.pickUpTime) {
           const pickUpTime = new Date(data.pickUpTime);
+          $('#pending-block').hide();
+          $('#confirmed-block').show();
           $('#pickUpTime').text(`${pickUpTime.getHours()}:${pickUpTime.getMinutes()}`);
+          $('#pending-bell').hide();
+          $('#confirmed-bell').show();
+
           clearInterval(intervalId);
         }
       });
