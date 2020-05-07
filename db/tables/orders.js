@@ -9,19 +9,19 @@ class OrdersTable {
     this.db = database;
   }
 
-    all(customerId = null) {
-    return this.db.query(`
-    SELECT orders.id AS order_id, orders.customer_id, orders.order_date_time, orders.pick_up_date_time, foods.*,
-    (CASE
-      WHEN pick_up_date_time < NOW() THEN true
-      WHEN pick_up_date_time > NOW() THEN false
-    END) AS complete
-    FROM orders
-    JOIN order_foods ON orders.id = order_foods.order_id
-    JOIN foods ON foods.id = order_foods.food_id
-    GROUP BY orders.id, foods.id
-    ORDER BY orders.order_date_time DESC
-    `)
+  all(customerId = null) {
+  return this.db.query(`
+  SELECT orders.id AS order_id, orders.customer_id, orders.order_date_time, orders.pick_up_date_time, foods.*,
+  (CASE
+    WHEN pick_up_date_time < NOW() THEN true
+    WHEN pick_up_date_time > NOW() THEN false
+  END) AS complete
+  FROM orders
+  JOIN order_foods ON orders.id = order_foods.order_id
+  JOIN foods ON foods.id = order_foods.food_id
+  GROUP BY orders.id, foods.id
+  ORDER BY orders.order_date_time DESC
+  `)
     .then((data) => {
       console.log("***DATA", data)
 
