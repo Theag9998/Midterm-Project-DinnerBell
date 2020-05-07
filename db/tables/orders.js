@@ -9,29 +9,100 @@ class OrdersTable {
     this.db = database;
   }
 
-  //   all(customerId = null) {
+    all(customerId = null) {
+    return this.db.query(`
+    SELECT orders.id AS order_id, orders.customer_id, orders.order_date_time, orders.pick_up_date_time, foods.*,
+    (CASE
+      WHEN pick_up_date_time < NOW() THEN true
+      WHEN pick_up_date_time > NOW() THEN false
+    END) AS complete
+    FROM orders
+    JOIN order_foods ON orders.id = order_foods.order_id
+    JOIN foods ON foods.id = order_foods.food_id
+    GROUP BY orders.id, foods.id
+    ORDER BY orders.order_date_time DESC
+    `)
+    .then((data) => {
+      console.log("***DATA", data)
+
+      const processedOrders = data.map((order) => {
+        const {
+          order_id,
+          customer_id,
+          order_date_time,
+          pick_up_date_time,
+          complete,
+          ...food
+        } = order;
+
+        return {
+          order_id,
+          customer_id,
+          order_date_time,
+          pick_up_date_time,
+          complete,
+          food
+        }
+      })
+console.log('processedOrders', processedOrders)
+      const groupedOrders = [];
+      // [
+      //   {
+      //     id: 2,
+      //     ...
+      //     foods: [{ id: 10 }]
+      //   }
+      // ]
+      processedOrders.forEach((order) => {
+        // check if order is already in groupedOrder
+        // find this order in grouped orders
+        const foundOrderIndex = groupedOrders.findIndex((ord) => ord.id === order.order_id)
+        if(foundOrderIndex > -1) {
+          groupedOrders[foundOrderIndex].foods.push(order.food)
+        } else {
+          // this order from processedOrders is not already in groupedOrders
+          const {
+            order_id,
+            customer_id,
+            order_date_time,
+            pick_up_date_time,
+            complete,
+            food
+          } = order;
+
+          groupedOrders.push({
+            id: order_id,
+            customer_id,
+            order_date_time,
+            pick_up_date_time,
+            complete,
+            foods: [food]
+          })
+        }
+      })
+
+      console.log("***GROUPED", JSON.stringify(groupedOrders, null, 2))
+      // let orders = [];
+      // for (const order of data) {
+      //   // console.log("***ORDER OF DATA", order)
+      //   let pendingOrder = this.db.orderFoods.getByOrder(order);
+      //   let receivedOrder = pendingOrder;
+      //   orders.push(receivedOrder);
+      // }
+      // console.log(data)
+      return groupedOrders;
+    })
+  //   // WHERE orders.id = $1
+  };
+
+//Pulling orders into
+  // all(customerId = null) {
   //   return this.db.query(`
-  //   SELECT orders.*, foods.*,
-  //   (CASE
-  //     WHEN order_date_time IS NULL AND pick_up_time IS NULL THEN true
-  //     WHEN order_date_time IS NOT NULL OR pick_up_time IS NOT NULL THEN false
-  //   END) as complete
-  //   FROM orders
-  //   JOIN order_foods ON orders.id = order_foods.order_id
-  //   JOIN foods ON foods.id = order_foods.food_id
-  //   WHERE orders.id = $1
-  //   ORDER BY orders.order_date_time DESC
+  //   SELECT * FROM orders
+  //   WHERE customer_id = $1
+  //   ORDER BY order_date_time DESC
   //   `, [1]);
   // };
-
-//ORIGINAL TO REVERT TO IF NEEDED
-  all(customerId = null) {
-    return this.db.query(`
-    SELECT * FROM orders
-    WHERE customer_id = $1
-    ORDER BY order_date_time DESC
-    `, [1]);
-  };
 
   /**
    * Add an order record.

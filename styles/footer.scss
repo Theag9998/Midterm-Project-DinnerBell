@@ -1,6 +1,9 @@
 footer {
   background-color: #c3e2ce;
   font-family: Unica one;
+  background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
+  bottom: 0;
+  width: 100%;
 }
 .company {
   display: flex;
@@ -16,3 +19,13 @@ footer {
   display: flex;
   justify-content: center;
 }
+.fab.fa-twitter{
+  padding: 0px 5px 7px 5px;
+}
+.fab.fa-instagram{
+  padding: 0px 5px 7px 5px;
+}
+.fab.fa-facebook-f{
+  padding: 0px 5px 7px 5px;
+}
+

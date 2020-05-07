@@ -24,10 +24,8 @@ module.exports = (db) => {
     const orderId = req.params.id;
     const minutes = req.body.estimatedTime;
     db.orders.confirm(orderId, minutes);
-
-    const estimatedTime = new Date(new Date().getTime() + minutes*60*1000)
-    // sms.sendMessage(process.env.PHONE, `${estimatedTime.getHours()}:${estimatedTime.getMinutes()}`)
-    })
+    // sms.sendMessage(process.env.PHONE, `Thanks for your order! \nYour order will be ready in ${minute} minute(s).`)
+  });
 
   return router;
 };
