@@ -34,6 +34,21 @@ module.exports = (db) => {
     }); */
   });
 
+  router.delete("/", (req, res) => {
+    const customerId = 1;
+    const foodId = req.body.foodId;
+    db.orders
+      .removeFood(customerId, foodId)
+      .then((data) => {
+        res.json(data);
+      });
+    /* .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    }); */
+  });
+
   router.put("/", (req, res) => {
     customerId = 1;
     const orderFoods = [];
