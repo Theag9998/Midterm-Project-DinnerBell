@@ -2,25 +2,78 @@
   padding-top: 3rem;
   padding-bottom: 3rem;
   margin-bottom: 0;
-  background-color: #fff;
-}
-
-
-.jumbotron p:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron h1 {
-  font-weight: 300;
-}
-
-.jumbotron .container {
-  max-width: 40rem;
-}
-.jumbotron .text-center {
+  background-image: url("https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
 }
+
+
+.jumbotron .container {
+  max-width: 40rem;
+  color: #246160;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  font-family: Unica one;
+}
+.restaurant-name {
+font-size: 60px;
+display: flex;
+justify-content: center;
+margin: 15px;
+
+}
+.load-text {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  margin: 15px;
+}
+.button-content {
+display: flex;
+justify-content: center;
+font-family: quicksand;
+}
+a.cart-btn {
+  background-color: #c3e2ce;
+  border-radius: 5px;
+  text-decoration: none;
+}
+a.cart-btn:hover {
+  background-color: #246160;
+  font-family: quicksand;
+  color: white;
+}
+.food-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: solid 10px #246160;
+  margin: 3rem;
+  background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+}
+.card-container {
+  box-sizing: border-box;
+  width: 250px;
+  height: 425px;
+  border: solid 5px #246160;
+  margin-top: 25px;
+  font-family: quicksand;
+  background-color: white;
+      margin: 1.5rem;
+}
+.card-top {
+  background-color: #246160;
+  color: white;
+  padding-left: 5px;
+}
+// .category {
+//   padding: 7px;
+// }
+// .food-name {
+//   padding: 7px;
+// }
 .album {
   display: flex;
   justify-content: center;
@@ -30,6 +83,56 @@
   justify-content: center;
 }
 .col-md-4 {
-  flex: 0 0 60%;
+  flex: 0 0 70%;
   max-width: 95%;
+}
+.card-top {
+  font-size: 30px;
+}
+.food-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 7px;
+}
+.card-body {
+  padding: 0px 10px 10px 10px;
+}
+.card-text {
+  font-size: 15px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+.add-to-cart {
+  background-color: #c3e2ce;
+  border-radius: 5px;
+  border-style: none;
+}
+.add-to-cart:hover {
+  background-color: #246160;
+  font-family: quicksand;
+  color: white;
+}
+.add-to-cart:focus {
+  outline:0;
+  }
+.remove-from-cart {
+  background-color: #c3e2ce;
+  border-radius: 5px;
+  border-style: none;
+  margin-top: 3px;
+}
+.remove-from-cart:hover {
+  background-color: #246160;
+  font-family: quicksand;
+  color: white;
+}
+.remove-from-cart:focus {
+  outline:0;
+  }
+
+.food-picture {
+  width: 240px;
+  height: 200px;
+  overflow: hidden;
 }

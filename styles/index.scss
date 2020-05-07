@@ -4,7 +4,7 @@ body {
 
   background-color: white;
 
-  h1 {
+  .main-homepage h1 {
     color: #246160;
     background: rgba(255, 255, 255, 0.7);
     padding: 10px;
@@ -30,6 +30,9 @@ nav {
   height: 100px;
   margin: 0px;
   padding: 0px;
+  background-image: url("https://www.transparenttextures.com/patterns/subtle-zebra-3d.png");
+
+
 }
 
 .logo {
@@ -40,6 +43,7 @@ nav {
   color: white;
   padding: 0px 15px 10px 15px;
   height: 100px;
+  // background-image: url("https://www.transparenttextures.com/patterns/green-gobbler.png");
 
 }
 
@@ -48,7 +52,7 @@ nav {
   width: max-content;
   font-size: 50px;
   text-decoration: none;;
-  color:#246160;
+  color:white;
 }
 
 .app-slogan {
@@ -57,7 +61,7 @@ nav {
   font-size: larger;
   align-self: center;
   text-decoration: none;
-  color: #246160;
+  color: white;
 }
 
 .page-links {
@@ -93,6 +97,7 @@ nav {
   align-self: center;
   font-size: xx-large;
   color: #246160;
+  text-decoration: none;
 }
 
 .fas:hover {
@@ -101,14 +106,16 @@ nav {
 
 .nav-user {
   margin-top: 0px;
-    margin-bottom: 0px;
-    font-family: quicksand;
-    font-size: small;
-    padding-top: 15px;
-    color: #246160;
+  margin-bottom: 0px;
+  width: fit-content;
+  align-self: center;
+  font-family: quicksand;
+  font-size: small;
+  padding-top: 15px;
+  color: #246160;
 }
 
-.main {
+.main-homepage {
   display: flex;
   align-items: center;
   justify-content: center;

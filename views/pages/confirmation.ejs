@@ -4,15 +4,13 @@
     <h1>Order Confirmation</h1>
     <article>
       <p>
-        Your confirmation number is: 3948
+        Your confirmation number is: <span id="orderId"><%= data.id %></span>
       </p>
       <p>
         Your pick up time is: <span id="pickUpTime"></span>
       </p>
     </article>
-    <script type="text/javascript" src="/scripts/checkConfirmation.js">
-
-    </script>
+    <script type="text/javascript" src="/scripts/checkConfirmation.js"></script>
   </section>
 
 <%- include('../partials/footer') %>
