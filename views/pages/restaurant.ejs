@@ -16,7 +16,9 @@
       <tbody>
         </tr>
         <% for (let order of orders.pending) { %>
-          <form action="/updateTime" method="POST">
+
+          <form action="/updateTime" method="POST"></form>
+
           <tr>
             <td><%= new Date(order.order_date_time).toDateString() %></td>
             <td class="td-flex">
