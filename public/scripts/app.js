@@ -21,7 +21,7 @@ $(document).ready(function() {
   $('.remove-from-cart').click((event) => {
     const reqData = { foodId: event.target.value };
     $.post('/checkout?_method=DELETE', reqData, (res) => {
-      const currentNum = parseInt($(event.target).prev().text());
+      const currentNum = parseInt($(event.target).prev().text() || 0);
       $(event.target).prev().text(currentNum <= 0 ? 0 : currentNum - 1);
     });
   });
