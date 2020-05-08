@@ -13,7 +13,7 @@ $(document).ready(function() {
   $('.add-to-cart').click((event) => {
     const reqData = { foodId: event.target.value };
     $.post('/checkout', reqData, (res) => {
-      $(event.target).next().text(parseInt($(event.target).next().text()) + 1);
+      $(event.target).next().text((parseInt($(event.target).next().text()) || 0) + 1);
     });
   });
 
