@@ -121,7 +121,6 @@ class OrdersTable {
     return this.db
       .query(queryString, [id])
       .then(data => {
-        console.log(data);
         const order = data[0];
         return this.db.orderFoods.getByOrder(order);
       });
@@ -185,10 +184,11 @@ class OrdersTable {
   submit(orderId, orderFoods) {
     const queryString = `
       UPDATE orders
-      SET order_date_time = NOW()
-      WHERE id = $1;
+      SET order_date_time = to_timestamp($1)
+      WHERE id = $2;
     `;
-    const values = [ orderId ];
+    const dateTimeNow = Date.now() / 1000;
+    const values = [ dateTimeNow, orderId ];
     return this.db
       .query(queryString, values)
       .then(() => {

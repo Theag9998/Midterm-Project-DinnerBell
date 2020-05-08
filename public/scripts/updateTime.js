@@ -7,6 +7,5 @@ $(document).ready(function() {
    const reqData = {'estimatedTime': timeBox, 'orderId': orderId}
    $.post(`/restaurant/${orderId}/confirm`, reqData);
    $(event.target).closest('.move-tr').detach().prependTo('.move-to-tbody');
-
   })
 })
