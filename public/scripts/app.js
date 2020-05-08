@@ -13,14 +13,14 @@ $(document).ready(function() {
   $('.add-to-cart').click((event) => {
     const reqData = { foodId: event.target.value };
     $.post('/checkout', reqData, (res) => {
-      console.log(res);
+      $(event.target).next().text(parseInt($(event.target).next().text()) + 1);
     });
   });
 
   $('.remove-from-cart').click((event) => {
     const reqData = { foodId: event.target.value };
     $.post('/checkout?_method=DELETE', reqData, (res) => {
-      console.log(res);
+      $(event.target).next().text(parseInt($(event.target).prev().text()) - 1);
     });
   });
 });
