@@ -66,7 +66,7 @@ module.exports = (db) => {
         return db.orders
           .submit(order.id, orderFoods)
           .then(data => {
-            console.log("ORDERFOODS", order.id)
+            // console.log("ORDERFOODS", order.id)
             // sms.sendMessage(process.env.PHONE, 'Incoming Order: bla bla bla')
             res.render('pages/confirmation', { data });
           })

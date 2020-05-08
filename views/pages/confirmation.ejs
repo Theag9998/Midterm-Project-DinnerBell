@@ -2,35 +2,35 @@
 <%- include('../partials/header') %>
   <section class="center-section">
     <h1 class="confirmation-title">Order Confirmation</h1>
-    
+
     <article id="confirmation-info">
       <div>
         <p class="confirmation-num">
           Your confirmation number is: <span id="orderId"><%= data.id %></span>
         </p>
-        <div class="pickup-time">
-          <p id="pending-block">
-            Awaiting confirmation...
-          </p>
-          <p id="confirmed-block">
-            Your pick up time is: <span id="pickUpTime"></span>
-          </p>
-        </div>
       </div>
-      
+
+      <div class="pickup-time">
+        <p id="pending-block">
+          Awaiting confirmation...
+        </p>
+        <p id="confirmed-block">
+          Your order will be ready in <span id="pickUpTime"></span> minutes!
+        </p>
+      </div>
+
       <span class="bell-icon">
         <i id="pending-bell" class="far fa-bell fa-5x pulse"></i>
       </span>
       <span class="bell-icon">
         <i id="confirmed-bell" class="fas fa-bell fa-5x ring"></i>
       </span>
-      <br />
 
       <section class="pickup-location">
         <div class="pickup-details">Head to the below location to pick up your order</div>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.7447708861228!2d-123.11718298431063!3d49.28123327933114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5486717986455555%3A0xcf2dfb0f48c8a056!2sLighthouse%20Labs!5e0!3m2!1sen!2sca!4v1588818131962!5m2!1sen!2sca" width="600" height="450" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
       </section>
-   
+
     </article>
     <script type="text/javascript" src="/scripts/checkConfirmation.js"></script>
   </section>

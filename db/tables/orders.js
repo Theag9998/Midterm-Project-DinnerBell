@@ -9,21 +9,20 @@ class OrdersTable {
     this.db = database;
   }
 
-    all(customerId = null) {
-    return this.db.query(`
-    SELECT orders.id AS order_id, orders.customer_id, orders.order_date_time, orders.pick_up_date_time, foods.*,
-    (CASE
-      WHEN pick_up_date_time < NOW() THEN true
-      WHEN pick_up_date_time > NOW() THEN false
-    END) AS complete
-    FROM orders
-    JOIN order_foods ON orders.id = order_foods.order_id
-    JOIN foods ON foods.id = order_foods.food_id
-    GROUP BY orders.id, foods.id
-    ORDER BY orders.order_date_time DESC
-    `)
+  all(customerId = null) {
+  return this.db.query(`
+  SELECT orders.id AS order_id, orders.customer_id, orders.order_date_time, orders.pick_up_date_time, foods.*,
+  (CASE
+    WHEN pick_up_date_time < NOW() THEN true
+    WHEN pick_up_date_time > NOW() THEN false
+  END) AS complete
+  FROM orders
+  JOIN order_foods ON orders.id = order_foods.order_id
+  JOIN foods ON foods.id = order_foods.food_id
+  GROUP BY orders.id, foods.id
+  ORDER BY orders.order_date_time DESC
+  `)
     .then((data) => {
-      console.log("***DATA", data)
 
       const processedOrders = data.map((order) => {
         const {
@@ -44,15 +43,8 @@ class OrdersTable {
           food
         }
       })
-console.log('processedOrders', processedOrders)
+
       const groupedOrders = [];
-      // [
-      //   {
-      //     id: 2,
-      //     ...
-      //     foods: [{ id: 10 }]
-      //   }
-      // ]
       processedOrders.forEach((order) => {
         // check if order is already in groupedOrder
         // find this order in grouped orders
@@ -81,15 +73,7 @@ console.log('processedOrders', processedOrders)
         }
       })
 
-      console.log("***GROUPED", JSON.stringify(groupedOrders, null, 2))
-      // let orders = [];
-      // for (const order of data) {
-      //   // console.log("***ORDER OF DATA", order)
-      //   let pendingOrder = this.db.orderFoods.getByOrder(order);
-      //   let receivedOrder = pendingOrder;
-      //   orders.push(receivedOrder);
-      // }
-      // console.log(data)
+
       return groupedOrders;
     })
   //   // WHERE orders.id = $1
@@ -220,11 +204,13 @@ console.log('processedOrders', processedOrders)
   confirm(orderId, minutes) {
     const queryString = `
       UPDATE orders
-      SET pick_up_date_time = NOW() + $1
+      SET pick_up_date_time = to_timestamp($1)
       WHERE orders.id = $2;
     `;
-    const estimatedTime = parseInt(minutes) * 60 * 1000;
-    const values = [ estimatedTime, orderId ];
+    const estimatedTime = parseInt(minutes) * 60;
+    const dateTimeNow = Date.now() / 1000;
+    const pickUpTime = dateTimeNow + estimatedTime;
+    const values = [ pickUpTime, orderId ];
     return this.db
       .query(queryString, values);
       // If using catch(), add in route
