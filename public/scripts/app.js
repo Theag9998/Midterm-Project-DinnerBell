@@ -22,7 +22,7 @@ $(document).ready(function() {
     const reqData = { foodId: event.target.value };
     $.post('/checkout?_method=DELETE', reqData, (res) => {
       const currentNum = parseInt($(event.target).prev().text());
-      $(event.target).next().text(currentNum <= 0 ? 0 : currentNum - 1);
+      $(event.target).prev().text(currentNum <= 0 ? 0 : currentNum - 1);
     });
   });
 });
